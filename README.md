@@ -1,6 +1,6 @@
 # python
 
-Steps to make a commit:
+## Steps to make a commit:
 
  git init
  git add .\README.md
@@ -10,3 +10,11 @@ Steps to make a commit:
  git push -u origin main
  git commit -m 'change encoding' .\README.md
  git push -u origin main
+
+
+ ## To run:
+
+ pipenv shell
+ python {script_name}
+
+ 
