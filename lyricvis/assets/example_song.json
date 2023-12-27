@@ -1,0 +1,22 @@
+{
+  "song_title": "Example Song",
+  "artist": "Example Artist",
+  "lyrics": [
+    {
+      "timestamp": "00:00:05",
+      "lyric": "Lyrics line 1"
+    },
+    {
+      "timestamp": "00:00:10",
+      "lyric": "Lyrics line 2"
+    },
+    {
+      "timestamp": "00:00:15",
+      "lyric": "Lyrics line 3"
+    },
+    {
+      "timestamp": "00:00:20",
+      "lyric": "Lyrics line 4"
+    }
+  ]
+}
