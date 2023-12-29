@@ -1,13 +1,20 @@
 from song import Song
 import create_image
+import os
 
 SIZE_VGA = (640, 480)
 FONTSIZE=30
 IMAGE_ROOT_PATH = "C:\\temp\\lyric_vis\\"
 BLANK_IMAGE_PATH = IMAGE_ROOT_PATH + "blank.png"
+TARGET_VIDEO_PATH = "C:\\temp\\out.mp4"
+
 FPS = 30
 SECS_PER_WORD = 2
 MAX_FRAMES = 100000
+
+song_file_path = 'assets/example_song.json'
+
+
 
 def format_number(integer):
     formatted_str = str(integer).zfill(5)
@@ -54,12 +61,20 @@ def init():
     create_image.create_blank(SIZE_VGA, BLANK_IMAGE_PATH)
 
 
+def get_audio_file_path(song_file_path, song):
+    parent_directory = os.path.dirname(song_file_path)
+    full_path = os.path.join(parent_directory, song.audio)
+
+    return full_path
+
+
 init()
 
 
 # to start, print a list of create image calls to make
 
-song = Song.create_from_file('assets/example_song.json')
+song = Song.create_from_file(song_file_path)
+audio_path = get_audio_file_path(song_file_path, song)
 
 current_frame = 0
 current_lyric = None
@@ -101,7 +116,7 @@ if not current_lyric is None:
     word_count = count_words(current_lyric)
     num_frames = word_count * SECS_PER_WORD * FPS
 
-    frames_to_next = total_frames - current_frame
+    frames_to_next = total_frames - current_frame - 1
 
     if (num_frames < frames_to_next):
         # gen num_frames
@@ -115,4 +130,4 @@ if not current_lyric is None:
         generate(current_frame, frames_to_next, current_lyric)
 
 
-
+create_image.create_video(IMAGE_ROOT_PATH, FPS, audio_path, TARGET_VIDEO_PATH)

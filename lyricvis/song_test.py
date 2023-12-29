@@ -9,6 +9,7 @@ class TestSongClass(unittest.TestCase):
         song = Song.create_from_file('assets/example_song.json')
         self.assertEqual(song.title, "Example Song")
         self.assertEqual(song.artist, "Example Artist")
+        self.assertEqual(song.audio, "example.mp3")
         self.assertEqual(len(song.lyrics), 4)
 
 if __name__ == '__main__':
