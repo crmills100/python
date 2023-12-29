@@ -32,7 +32,7 @@ def timestamp_to_frames(timestamp):
 def generate_blank(frame_number, count):
     print(f"generate_blank: {frame_number}, {count}")
 
-    for x in range(0, count):
+    for x in range(0, count + 1):
         copy_path = IMAGE_ROOT_PATH + format_number(frame_number + x) + ".png"
         create_image.copy_file(BLANK_IMAGE_PATH, copy_path)
 
