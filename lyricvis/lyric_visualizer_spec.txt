@@ -1,0 +1,89 @@
+For each lyric phrase and time code, generate an image
+Stich them together to music
+
+Input:
+	file with lyrics and timestamps
+	song file
+
+Assumptions: assume 1080p (1920x1080)
+
+Resources:
+
+1. Basic python to make a video with images
+https://www.stackbuilders.com/blog/python-video-generation/ - complete
+https://github.com/stackbuilders/blog-code/tree/main/python/python-video-generation/code
+
+2. Another moviepy tutorial:
+
+https://www.section.io/engineering-education/video-editing-python-moviepy/
+
+3. Images to video (includes a moviepy example):
+
+https://stackoverflow.com/questions/44947505/how-to-make-a-movie-out-of-images-in-python
+
+4. Images to video (moviepy):
+https://stackoverflow.com/questions/44732602/convert-image-sequence-to-video-using-moviepy
+
+5. Running Stable Diffusion locally:
+https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Command-Line-Arguments-and-Settings
+
+
+
+Prototype I: - complete
+        create a text image a given lyric
+	api: create_image(w, h, prompt, path?) -> returns an image or writes to disk 
+
+Prototype II: - complete
+	Option A:
+		create a blank video of 5mins long
+		parse the timestamps and lyrics
+		see how to insert the lyrics into the video
+		save the video
+
+	alternate... - choose this:
+	
+	Option B:
+	
+		parse the timestamps and lyrics		
+		create an image for each frame of video, with lyrics as required (initally start with 2 seconds per word or next lyric, which ever comes first)
+		create video from images
+
+		https://pythonexamples.org/python-opencv-cv2-create-video-from-images/
+
+
+Prototype III:
+	for each lyric: create a GAI (Generative AI) image based on lyric
+	stitch together video from images
+
+	III.1:
+		make a call to stable diffusion (SD) with a prompt 
+				https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/API
+				http://192.168.1.10:7860/docs
+		write the image file to disk at a path
+		
+	III.2:
+		overlay text on top of stable diffusion (SD) image
+
+	III.3:
+		update video generator to use SD images
+
+Prototype IV: - complete
+	add sound to generated video
+
+Prototype V:
+	code cleanup
+	unittesting
+
+Prototype VI:
+	create 3 videos
+
+Publish Prototype:
+	Publish to youtube
+
+
+		
+
+
+	
+
+

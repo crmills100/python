@@ -1,5 +1,6 @@
 from song import Song
 import create_image
+import create_image_sd
 import os
 
 SIZE_VGA = (640, 480)
@@ -50,7 +51,7 @@ def generate(frame_number, count, lyric):
         return
     
     path = IMAGE_ROOT_PATH + format_number(frame_number) + ".png"
-    initial = create_image.create_image(SIZE_VGA, lyric, FONTSIZE, path)
+    initial = create_image_sd.create_image(SIZE_VGA, lyric, FONTSIZE, path)
 
     for x in range(1, count):
         copy_path = IMAGE_ROOT_PATH + format_number(frame_number + x) + ".png"
