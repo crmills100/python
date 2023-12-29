@@ -1,14 +1,15 @@
 {
   "song_title": "Example Song",
   "artist": "Example Artist",
+  "length": "00:00:30",
   "lyrics": [
     {
       "timestamp": "00:00:05",
-      "lyric": "Lyrics line 1"
+      "lyric": "One"
     },
     {
       "timestamp": "00:00:10",
-      "lyric": "Lyrics line 2"
+      "lyric": "Two words"
     },
     {
       "timestamp": "00:00:15",

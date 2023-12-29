@@ -2,15 +2,17 @@ import json
 
 class Song:
 
-    def __init__(self, title, artist, lyrics):
+    def __init__(self, title, artist, length, lyrics):
         self.title = title
         self.artist = artist
+        self.length = length
         self.lyrics = lyrics
 
     def display_info(self):
         print(f"Song Title: {self.title}")
         print(f"Artist: {self.artist}")
-        print("\nLyrics:")
+        print(f"Length: {self.length}")
+        print("Lyrics:")
         for lyric_info in self.lyrics:
             print(f"Timestamp: {lyric_info['timestamp']} - Lyric: {lyric_info['lyric']}")
 
@@ -24,9 +26,10 @@ class Song:
         # Extract song information
         song_title = data['song_title']
         artist = data['artist']
+        length = data['length']
         lyrics = data['lyrics']
 
-        song = Song(song_title, artist, lyrics)
+        song = Song(song_title, artist, length, lyrics)
 
         return song
     
