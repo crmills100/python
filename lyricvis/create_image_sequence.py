@@ -1,5 +1,17 @@
 from song import Song
+import create_image
 
+SIZE_VGA = (640, 480)
+FONTSIZE=30
+IMAGE_ROOT_PATH = "C:\\temp\\lyric_vis\\"
+BLANK_IMAGE_PATH = IMAGE_ROOT_PATH + "blank.png"
+FPS = 30
+SECS_PER_WORD = 2
+MAX_FRAMES = 100000
+
+def format_number(integer):
+    formatted_str = str(integer).zfill(5)
+    return formatted_str
 
 def count_words(lyric):
     if lyric is None or not lyric.strip():
@@ -17,21 +29,35 @@ def timestamp_to_frames(timestamp):
     frames = total_seconds * frames_per_second
     return frames
 
-
 def generate_blank(frame_number, count):
     print(f"generate_blank: {frame_number}, {count}")
-    # TODO
+
+    for x in range(0, count):
+        copy_path = IMAGE_ROOT_PATH + format_number(frame_number + x) + ".png"
+        create_image.copy_file(BLANK_IMAGE_PATH, copy_path)
 
 def generate(frame_number, count, lyric):
     print(f"generate: {frame_number}, {count}, {lyric}")
-    # TODO
+    if (lyric is None):
+        generate_blank(frame_number, count)
+        return
+    
+    path = IMAGE_ROOT_PATH + format_number(frame_number) + ".png"
+    initial = create_image.create_image(SIZE_VGA, lyric, FONTSIZE, path)
 
+    for x in range(1, count):
+        copy_path = IMAGE_ROOT_PATH + format_number(frame_number + x) + ".png"
+        create_image.copy_file(initial, copy_path)
+        
+
+def init():
+    create_image.create_blank(SIZE_VGA, BLANK_IMAGE_PATH)
+
+
+init()
 
 
 # to start, print a list of create image calls to make
-
-FPS = 30
-SECS_PER_WORD = 2
 
 song = Song.create_from_file('assets/example_song.json')
 
