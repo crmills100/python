@@ -1,0 +1,34 @@
+{
+  "song_title": "What It's Like",
+  "artist": "Everlast",
+  "length": "00:01:00",
+  "audio": "everlast_whatitslike.mp3",
+
+  "lyrics": [
+    {
+      "timestamp": "00:00:24",
+      "lyric": "We've all seen the man at the liquor store beggin' for your change"
+    },
+    {
+      "timestamp": "00:00:29",
+      "lyric": "The hair on his face is dirty, dreadlocked and full of mange"
+    },
+    {
+      "timestamp": "00:00:34",
+      "lyric": "He asks a man for what he could spare with shame in his eyes"
+    },
+    {
+      "timestamp": "00:00:41",
+      "lyric": "But, \"Get a job, you fuckin' slob!\" is all he replied"
+    },
+    {
+      "timestamp": "00:00:47",
+      "lyric": "Well, God forbid you ever had to walk a mile in his shoes"
+    },
+    {
+      "timestamp": "00:00:53",
+      "lyric": "'Cause then you really might know what it's like to sing the blues"
+    }
+
+  ]
+}
