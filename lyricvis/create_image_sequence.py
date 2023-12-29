@@ -3,7 +3,7 @@ import create_image
 import os
 
 SIZE_VGA = (640, 480)
-FONTSIZE=30
+FONTSIZE=20
 IMAGE_ROOT_PATH = "C:\\temp\\lyric_vis\\"
 BLANK_IMAGE_PATH = IMAGE_ROOT_PATH + "blank.png"
 TARGET_VIDEO_PATH = "C:\\temp\\out.mp4"
@@ -12,8 +12,8 @@ FPS = 30
 SECS_PER_WORD = 2
 MAX_FRAMES = 100000
 
-song_file_path = 'assets/example_song.json'
-
+#song_file_path = 'assets/example_song.json'
+song_file_path = 'assets/everlast_whatitslike.json'
 
 
 def format_number(integer):
@@ -103,7 +103,9 @@ for lyric_info in song.lyrics:
 
     else:
         # gen frames_to_next
-        generate(current_frame, frames_to_next, current_lyric)
+        generate(current_frame, frames_to_next - 1, current_lyric)
+        # blank frame to keep things visually clean
+        generate_blank(current_frame + frames_to_next - 1, 1)
 
 
     print(f"advancing to current frame by {frames_to_next} + 1")
