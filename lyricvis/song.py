@@ -2,12 +2,17 @@ import json
 
 class Song:
 
-    def __init__(self, title, artist, length, audio, lyrics):
+    def __init__(self, title, artist, length, audio, lyrics, credits=None):
         self.title = title
         self.artist = artist
         self.length = length
         self.audio = audio
         self.lyrics = lyrics
+        self.credits = credits or []
+
+    def add_credit(self, role, name):
+        self.credits.append({role: name})
+
 
     def display_info(self):
         print(f"Song Title: {self.title}")
@@ -18,7 +23,17 @@ class Song:
         for lyric_info in self.lyrics:
             print(f"Timestamp: {lyric_info['timestamp']} - Lyric: {lyric_info['lyric']}")
 
-   
+    def display_credits(self):
+        if self.credits:
+            print("Credits:")
+            for credit in self.credits:
+                for role, name in credit.items():
+                    print(f"{role}: {name}")
+        else:
+            print("No credits available for this song.")
+
+
+
     @staticmethod
     def create_from_file(path):
         # Read JSON file
@@ -33,6 +48,14 @@ class Song:
         lyrics = data['lyrics']
 
         song = Song(song_title, artist, length, audio, lyrics)
+
+        # Parse and add credits from JSON data
+        credits = data['credits']
+        if credits:
+            for credit in credits:
+                for role, name in credit.items():
+                    song.add_credit(role, name)
+
 
         return song
     

@@ -29,7 +29,13 @@
     {
       "timestamp": "00:00:53",
       "lyric": "'Cause then you really might know what it's like to sing the blues"
-    }
+    }],
 
+  "credits": [
+    {"Director": "Christopher Mills"},
+    {"Producer": "Christopher Mills"},
+    {"Visual Effects": "Stable Diffusion"},
+    {"": "Copyright @ 2024 Christopher Mills"}
   ]
+
 }

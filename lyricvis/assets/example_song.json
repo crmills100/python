@@ -21,5 +21,13 @@
       "timestamp": "00:00:20",
       "lyric": "Lyrics line 4"
     }
+  ],
+
+  "credits": [
+    {"Director": "Christopher Mills"},
+    {"Producer": "Christopher Mills"},
+    {"Visual Effects": "Stable Diffusion"},
+    {"": "Copyright @ 2024 Christopher Mills"}
   ]
+
 }
