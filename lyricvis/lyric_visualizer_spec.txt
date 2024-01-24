@@ -7,6 +7,10 @@ Input:
 
 Assumptions: assume 1080p (1920x1080)
 
+Repository:
+    https://github.com/crmills100/python/tree/main/lyricvis
+	
+
 Resources:
 
 1. Basic python to make a video with images
@@ -33,11 +37,20 @@ Running:
 Start image generator on Cayman:
 	C:\opt\sd.webui> .\run.bat
 
-	Configuration in webui/webui-user.bat
+	Configuration in webui/webui-user.bat (IP address)
+		Noteable options: 
+			set COMMANDLINE_ARGS=--lowram --api --server-name=192.168.1.13
+			set CUDA_VISIBLE_DEVICES=0
+
 	Configuration options in webui/modules/cmd_args.py
 
 Generate a video for a song on localhost:
-	C:\Users\cmills\code\python\lyricvis> python .\create_image_sequence.py
+	Start the virtualenv:
+		C:\Users\cmills\code\python\lyricvis> pipenv shell
+	Run the generator:
+		C:\Users\cmills\code\python\lyricvis> python .\create_image_sequence.py
+	
+
 
 
 

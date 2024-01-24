@@ -12,7 +12,6 @@
      git push -u origin main
 
 
- ## To run:
 
      pipenv shell
      python {script_name}

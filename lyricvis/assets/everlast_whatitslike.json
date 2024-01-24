@@ -32,8 +32,8 @@
     }],
 
   "credits": [
-    {"Director": "Christopher Mills"},
-    {"Producer": "Christopher Mills"},
+    {"Directed By": "Christopher Mills"},
+    {"Produced By": "Christopher Mills"},
     {"Visual Effects": "Stable Diffusion"},
     {"": "Copyright @ 2024 Christopher Mills"}
   ]

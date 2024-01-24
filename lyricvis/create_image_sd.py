@@ -9,8 +9,11 @@ from moviepy.editor import *
 from moviepy.config import change_settings
 change_settings({"IMAGEMAGICK_BINARY": r"C:\\opt\\ImageMagick-7.1.0-Q16-HDRI\\magick.exe"})
 
+from config import Config
 
-URL = "http://192.168.1.10:7860/sdapi/v1/txt2img"
+config = Config();
+
+URL = config.get_web_service_url();
 SIZE_VGA = (640, 480)
 
 
