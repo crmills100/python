@@ -12,6 +12,7 @@ class TestSongClass(unittest.TestCase):
         self.assertEqual(song.audio, "example.mp3")
         self.assertEqual(len(song.lyrics), 4)
 
+        song.display_info()
         song.display_credits()
 
 if __name__ == '__main__':

@@ -16,3 +16,13 @@
      pipenv shell
      python {script_name}
 
+
+## For a virtual environment:
+
+     virtualenv -p python3 {path_to_virtenv}
+     cd {path_to_virtualenv}
+     .\Scripts\activate 
+     # run pip install for any modules
+     #   example: pip install pyautogui
+     python {path_to_python_script}
+

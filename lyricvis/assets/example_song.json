@@ -3,6 +3,7 @@
   "artist": "Example Artist",
   "length": "00:00:30",
   "audio": "example.mp3",
+  "title_graphic": "example.png",
 
   "lyrics": [
     {
