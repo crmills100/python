@@ -9,12 +9,22 @@ IMAGE_ROOT_PATH = "C:\\temp\\lyric_vis\\"
 BLANK_IMAGE_PATH = IMAGE_ROOT_PATH + "blank.png"
 TARGET_VIDEO_PATH = "C:\\temp\\out.mp4"
 
-FPS = 24
+FPS = 30
 SECS_PER_WORD = 2
 MAX_FRAMES = 100000
 
 #song_file_path = 'assets/example_song.json'
 song_file_path = 'assets/everlast_whatitslike.json'
+
+
+class FrameInfo:
+    def __init__(self, num, prompt, text):
+        self.num = num
+        self.prompt = prompt
+        self.text = text
+
+    def __str__(self):
+        return f"FrameInfo(num='{self.num}', prompt='{self.prompt}', text='{self.text}')"
 
 
 def format_number(integer):
@@ -37,21 +47,67 @@ def timestamp_to_frames(timestamp):
     frames = total_seconds * frames_per_second
     return frames
 
-def generate_blank(frame_number, count):
+def generate_blank(frame_info, frame_number, count):
+    print(f"generate_blank: {frame_number}, {count}")
+
+    for x in range(0, count):
+        frame_info.append(FrameInfo(frame_number + x, None, None))
+
+def generate(frame_info, frame_number, count, lyric):
+    print(f"generate: {frame_number}, {count}, {lyric}")
+    if (lyric is None):
+        generate_blank(frame_info, frame_number, count)
+        return
+
+    for x in range(0, count):
+        frame_info.append(FrameInfo(frame_number + x, lyric, None))
+
+
+def add_credit(frame_info, credit, frame_number, count):
+    print(f"add_credit: {frame_number}, {count}, {credit}")
+    for x in range(0, count):
+        idx = frame_number + x
+        frame = frame_info[frame_number + x]
+        for key, value in credit.items():
+            frame.text = key + ": " + value
+
+
+def create_image_sequence(frame_info):
+    curr = frame_info[0]
+    num_frames = 0
+
+    for frame in frame_info:
+        if (frame.num == 0):
+            continue
+        if (curr.prompt == frame.prompt and curr.text == frame.text):
+            num_frames = num_frames + 1
+        else:
+            generate2(curr.num, num_frames, curr.prompt, curr.text)
+            curr = frame
+            num_frames = 0
+    
+    generate2(curr.num, num_frames, curr.prompt, curr.text)
+
+
+
+
+    
+
+def generate_blank2(frame_number, count):
     print(f"generate_blank: {frame_number}, {count}")
 
     for x in range(0, count + 1):
         copy_path = IMAGE_ROOT_PATH + format_number(frame_number + x) + ".png"
         create_image.copy_file(BLANK_IMAGE_PATH, copy_path)
 
-def generate(frame_number, count, lyric):
-    print(f"generate: {frame_number}, {count}, {lyric}")
+def generate2(frame_number, count, lyric, text):
+    print(f"generate: {frame_number}, {count}, {lyric}, {text}")
     if (lyric is None):
-        generate_blank(frame_number, count)
+        generate_blank2(frame_number, count)
         return
     
     path = IMAGE_ROOT_PATH + format_number(frame_number) + ".png"
-    initial = create_image_sd.create_image(SIZE_VGA, lyric, FONTSIZE, path)
+    initial = create_image_sd.create_image(SIZE_VGA, lyric, text, FONTSIZE, path)
 
     for x in range(1, count):
         copy_path = IMAGE_ROOT_PATH + format_number(frame_number + x) + ".png"
@@ -83,6 +139,9 @@ current_lyric = None
 total_frames = timestamp_to_frames(song.length)
 print(f"total_frames: {total_frames}")
 
+frame_info = []
+print(len(frame_info))
+
 for lyric_info in song.lyrics:
 
     print(f"loop: {current_frame} {current_lyric}")
@@ -93,24 +152,24 @@ for lyric_info in song.lyrics:
     word_count = count_words(current_lyric)
     num_frames = word_count * SECS_PER_WORD * FPS
 
-    frames_to_next = next_frame - current_frame - 1
+    frames_to_next = next_frame - current_frame
 
     if (num_frames < frames_to_next):
         # gen num_frames
-        generate(current_frame, num_frames, current_lyric)
+        generate(frame_info, current_frame, num_frames, current_lyric)
         
         blank_frames = frames_to_next - num_frames
-        generate_blank(current_frame + num_frames, blank_frames)
+        generate_blank(frame_info, current_frame + num_frames, blank_frames)
 
     else:
         # gen frames_to_next
-        generate(current_frame, frames_to_next - 1, current_lyric)
+        generate(frame_info, current_frame, frames_to_next - 1, current_lyric)
         # blank frame to keep things visually clean
-        generate_blank(current_frame + frames_to_next - 1, 1)
+        generate_blank(frame_info, current_frame + frames_to_next, 1)
 
 
-    print(f"advancing to current frame by {frames_to_next} + 1")
-    current_frame = current_frame + frames_to_next + 1
+    print(f"advancing to current frame by {frames_to_next}")
+    current_frame = current_frame + frames_to_next
     current_lyric = next_lyric
 
 
@@ -119,18 +178,36 @@ if not current_lyric is None:
     word_count = count_words(current_lyric)
     num_frames = word_count * SECS_PER_WORD * FPS
 
-    frames_to_next = total_frames - current_frame - 1
+    frames_to_next = total_frames - current_frame
 
     if (num_frames < frames_to_next):
         # gen num_frames
-        generate(current_frame, num_frames, current_lyric)
+        generate(frame_info, current_frame, num_frames, current_lyric)
 
         blank_frames = frames_to_next - num_frames
-        generate_blank(current_frame + num_frames, blank_frames)
+        generate_blank(frame_info, current_frame + num_frames, blank_frames)
 
     else:
         # gen frames_to_next
-        generate(current_frame, frames_to_next, current_lyric)
+        generate(frame_info, current_frame, frames_to_next, current_lyric)
 
+
+# add credits
+credit_frames = len(song.credits) * 3 * FPS
+curr_credit_frame = total_frames - credit_frames
+
+for credit in song.credits:
+    credit_frame_count = 3 * FPS
+    add_credit(frame_info, credit, curr_credit_frame, credit_frame_count)
+    curr_credit_frame = curr_credit_frame + credit_frame_count
+    
+i = 0
+for f in frame_info:
+    print(f"i: {i}, f: {f}")
+    i = i + 1
+
+
+
+create_image_sequence(frame_info)
 
 create_image.create_video(IMAGE_ROOT_PATH, FPS, audio_path, TARGET_VIDEO_PATH)

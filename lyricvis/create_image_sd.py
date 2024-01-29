@@ -17,7 +17,7 @@ URL = config.get_web_service_url();
 SIZE_VGA = (640, 480)
 
 
-def create_image(size, prompt, fontsize, path):
+def create_image(size, prompt, text, fontsize, path):
     """ create an image of dimensions size(width, height)) based on the text prompt, write the image to the path
     
     """
@@ -36,10 +36,22 @@ def create_image(size, prompt, fontsize, path):
 
     text_clip = text_clip.set_position((x_position, y_position))
     border_clip = border_clip.set_position((x_position-1, y_position-1))
+    components = [input_image, border_clip, text_clip];
+
+    
+
+    # add any additional text
+    if (text != None):
+        additional_clip = TextClip(text, fontsize=(fontsize - 2), color="white", method='label', size=size)
+        print(input_image.h)
+        y_position = (input_image.h / 2) - 30
+        additional_clip = additional_clip.set_position((x_position, y_position))
+        components.append(additional_clip)
+
 
     # Write text onto the input image
     #final_clip = input_image.copy().add_mask().blit(text_clip.on_color(size=input_image.size).set_pos((x_position, y_position)))
-    final_clip = CompositeVideoClip([input_image, border_clip, text_clip])
+    final_clip = CompositeVideoClip(components)
 
     final_clip.save_frame(path)
 
