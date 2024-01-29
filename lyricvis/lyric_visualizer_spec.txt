@@ -32,6 +32,30 @@ https://stackoverflow.com/questions/44732602/convert-image-sequence-to-video-usi
 https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Command-Line-Arguments-and-Settings
 
 
+Songs to Test With:
+===================
+
+Lil Wayne - Got Money ft. T-Pain
+https://www.youtube.com/watch?v=1ohYsK5Y8Dc
+
+
+Tiesto - Lay Low
+https://www.youtube.com/watch?v=8PgDeK4x_Xw
+
+
+Tiesto - Both
+https://www.youtube.com/watch?v=zR5GPNpE6hU
+
+To Explore:
+===========
+
+Music visualization spectrogram:
+https://www.youtube.com/watch?v=nEkgooOsnAY
+
+Pulsing Song:
+https://www.youtube.com/watch?v=8PgDeK4x_Xw
+
+
 Running:
 
 Start image generator on Cayman:

@@ -9,7 +9,7 @@ IMAGE_ROOT_PATH = "C:\\temp\\lyric_vis\\"
 BLANK_IMAGE_PATH = IMAGE_ROOT_PATH + "blank.png"
 TARGET_VIDEO_PATH = "C:\\temp\\out.mp4"
 
-FPS = 30
+FPS = 24
 SECS_PER_WORD = 2
 MAX_FRAMES = 100000
 
@@ -127,7 +127,7 @@ if not current_lyric is None:
 
         blank_frames = frames_to_next - num_frames
         generate_blank(current_frame + num_frames, blank_frames)
-        pass
+
     else:
         # gen frames_to_next
         generate(current_frame, frames_to_next, current_lyric)
