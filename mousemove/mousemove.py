@@ -36,6 +36,10 @@ max_x = size.width - (border * 2)
 max_y = size.height - (border * 2)
 
 (last_x, last_y) = pyautogui.position()
+print(f"intial sleep for {sleep} seconds")
+time.sleep(sleep)
+
+
 while (True):
     (x, y) = pyautogui.position()
     print(f"x: {x} y: {y}")
