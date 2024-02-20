@@ -17,7 +17,7 @@ URL = config.get_web_service_url();
 SIZE_VGA = (640, 480)
 
 
-def create_image(size, prompt, text, fontsize, path):
+def create_image(size, prompt, is_new_lyric, text, fontsize, path):
     """ create an image of dimensions size(width, height)) based on the text prompt, write the image to the path
     
     """
