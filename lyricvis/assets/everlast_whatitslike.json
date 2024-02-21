@@ -5,6 +5,11 @@
   "audio": "everlast_whatitslike.mp3",
   "lyrics_url": "https://genius.com/Everlast-what-its-like-lyrics",
   "title_graphic": "everlast_whatitslike.png",
+  "titles": [
+    "Bebe Coin Power Presents",
+    "A Generative AI Music Experience"
+  ],
+
   "lyrics": [
     {
       "timestamp": "00:00:24",

@@ -35,7 +35,7 @@ def create_image(size, prompt, is_new_lyric, text, fontsize, path, temp_dir):
     border_clip = TextClip(prompt, fontsize=fontsize, color='black', method='label', size=size)
     
     x_position = (input_image.w - text_clip.w) // 2 
-    y_position = (input_image.h - text_clip.h) // 2
+    y_position = ((input_image.h - text_clip.h) // 2) + (input_image.h // 4)
 
     text_clip = text_clip.set_position((x_position, y_position))
     border_clip = border_clip.set_position((x_position-1, y_position-1))

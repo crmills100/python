@@ -64,13 +64,24 @@ def add_frame(frame_info, frame_number, count, lyric):
     for x in range(0, count):
         frame_info.append(FrameInfo(frame_number + x, lyric, None))
 
+def add_title(frame_info, title, frame_number, count):
+    print(f"add_credit: {frame_number}, {count}, {title}")
+    for x in range(0, count):
+        idx = frame_number + x
+        frame = frame_info[frame_number + x]
+        frame.text = title
+
+
 def add_credit(frame_info, credit, frame_number, count):
     print(f"add_credit: {frame_number}, {count}, {credit}")
     for x in range(0, count):
         idx = frame_number + x
         frame = frame_info[frame_number + x]
         for key, value in credit.items():
-            frame.text = key + ": " + value
+            if (key == ""):
+                frame.text = value
+            else:
+                frame.text = key + ": " + value
 
 
 def create_image_sequence(frame_info):
@@ -103,18 +114,25 @@ def create_image_sequence(frame_info):
 
     
 
-def generate_blank2(frame_number, count):
-    print(f"generate_blank2: {frame_number}, {count}")
+def generate_blank2(frame_number, count, text):
+    print(f"generate_blank2: {frame_number}, {count}, {text}")
 
     if (GEN_IMAGES):
+        orig_path = BLANK_IMAGE_PATH
+        if (text != None):
+            path = IMAGE_TEMP_DIR + "blank_w_text.png"
+            create_image.create_image(SIZE_VGA, text, FONTSIZE, path)
+            orig_path = path
+
         for x in range(0, count + 1):
             copy_path = IMAGE_ROOT_PATH + format_number(frame_number + x) + ".png"
-            create_image.copy_file(BLANK_IMAGE_PATH, copy_path)
+            create_image.copy_file(orig_path, copy_path)
+
 
 def generate2(frame_number, count, lyric, is_new_lyric, text):
     print(f"generate2: {frame_number}, {count}, {lyric}, {is_new_lyric}, {text}")
     if (lyric is None):
-        generate_blank2(frame_number, count)
+        generate_blank2(frame_number, count, text)
         return
     
     path = IMAGE_ROOT_PATH + format_number(frame_number) + ".png"
@@ -204,8 +222,19 @@ if not current_lyric is None:
         add_frame(frame_info, current_frame, frames_to_next, current_lyric)
 
 
+# add titles
+title_frames = len(song.titles) * 3 * FPS
+curr_title_frame = 2 * FPS
+
+for title in song.titles:
+    title_frame_count = 3 * FPS
+    add_title(frame_info, title, curr_title_frame, title_frame_count)
+    curr_title_frame = curr_title_frame + title_frame_count
+
+
+
 # add credits
-credit_frames = len(song.credits) * 3 * FPS
+credit_frames = (len(song.credits) + 1) * 3 * FPS
 curr_credit_frame = total_frames - credit_frames
 
 for credit in song.credits:

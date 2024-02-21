@@ -2,13 +2,14 @@ import json
 
 class Song:
 
-    def __init__(self, title, artist, length, audio, title_graphic, lyrics, credits=None):
+    def __init__(self, title, artist, length, audio, title_graphic, lyrics, titles=None, credits=None):
         self.title = title
         self.artist = artist
         self.length = length
         self.audio = audio
         self.title_graphic = title_graphic
         self.lyrics = lyrics
+        self.titles = titles or []
         self.credits = credits or []
 
     def add_credit(self, role, name):
@@ -49,8 +50,8 @@ class Song:
         audio = data['audio']
         title_graphic = data['title_graphic']
         lyrics = data['lyrics']
-
-        song = Song(song_title, artist, length, audio, title_graphic, lyrics)
+        titles = data['titles']
+        song = Song(song_title, artist, length, audio, title_graphic, lyrics, titles)
 
         # Parse and add credits from JSON data
         credits = data['credits']
