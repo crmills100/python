@@ -20,13 +20,14 @@ song_file_path = 'assets/everlast_whatitslike.json'
 
 
 class FrameInfo:
-    def __init__(self, num, prompt, text):
+    def __init__(self, num, prompt, text, title):
         self.num = num
         self.prompt = prompt
         self.text = text
+        self.title = title
 
     def __str__(self):
-        return f"FrameInfo(num='{self.num}', prompt='{self.prompt}', text='{self.text}')"
+        return f"FrameInfo(num='{self.num}', prompt='{self.prompt}', text='{self.text}, title='{self.title}')"
 
 
 def format_number(integer):
@@ -53,7 +54,7 @@ def add_blank_frame(frame_info, frame_number, count):
     print(f"add_blank_frame: {frame_number}, {count}")
 
     for x in range(0, count):
-        frame_info.append(FrameInfo(frame_number + x, None, None))
+        frame_info.append(FrameInfo(frame_number + x, None, None, None))
 
 def add_frame(frame_info, frame_number, count, lyric):
     print(f"add_frame: {frame_number}, {count}, {lyric}")
@@ -62,14 +63,14 @@ def add_frame(frame_info, frame_number, count, lyric):
         return
 
     for x in range(0, count):
-        frame_info.append(FrameInfo(frame_number + x, lyric, None))
+        frame_info.append(FrameInfo(frame_number + x, lyric, None, None))
 
 def add_title(frame_info, title, frame_number, count):
-    print(f"add_credit: {frame_number}, {count}, {title}")
+    print(f"add_title: {frame_number}, {count}, {title}")
     for x in range(0, count):
         idx = frame_number + x
         frame = frame_info[frame_number + x]
-        frame.text = title
+        frame.title = title
 
 
 def add_credit(frame_info, credit, frame_number, count):
@@ -94,18 +95,18 @@ def create_image_sequence(frame_info):
     for frame in frame_info:
         if (frame.num == 0):
             continue
-        if ((curr.prompt == frame.prompt) and (curr.text == frame.text)):
+        if ((curr.prompt == frame.prompt) and (curr.text == frame.text) and (curr.title == frame.title)):
             num_frames = num_frames + 1
         else:
             num_frames = num_frames + 1
-            generate2(curr.num, num_frames, curr.prompt, prev_prompt != curr.prompt, curr.text)
+            generate2(curr.num, num_frames, curr.prompt, prev_prompt != curr.prompt, curr.text, curr.title)
             prev_prompt = curr.prompt
             generated_frame_count = generated_frame_count + num_frames
             curr = frame
             num_frames = 0
 
     
-    generate2(curr.num, num_frames + 1, curr.prompt, curr.prompt != frame.prompt, curr.text)
+    generate2(curr.num, num_frames + 1, curr.prompt, curr.prompt != frame.prompt, curr.text, curr.title)
     generated_frame_count = generated_frame_count + num_frames + 1
     
     print(f"create_image_sequence generated {generated_frame_count} frames vs {len(frame_info)}")
@@ -114,25 +115,27 @@ def create_image_sequence(frame_info):
 
     
 
-def generate_blank2(frame_number, count, text):
-    print(f"generate_blank2: {frame_number}, {count}, {text}")
+def generate_blank2(frame_number, count, text, title):
+    print(f"generate_blank2: {frame_number}, {count}, {text}, {title}")
 
     if (GEN_IMAGES):
         orig_path = BLANK_IMAGE_PATH
-        if (text != None):
+        if (title != None):
             path = IMAGE_TEMP_DIR + "blank_w_text.png"
-            create_image.create_image(SIZE_VGA, text, FONTSIZE, path)
+            create_image.create_image(SIZE_VGA, title, FONTSIZE, path)
             orig_path = path
+
+        # TODO: currently ignoring blank text frames, determine if this should be changed
 
         for x in range(0, count + 1):
             copy_path = IMAGE_ROOT_PATH + format_number(frame_number + x) + ".png"
             create_image.copy_file(orig_path, copy_path)
 
 
-def generate2(frame_number, count, lyric, is_new_lyric, text):
-    print(f"generate2: {frame_number}, {count}, {lyric}, {is_new_lyric}, {text}")
+def generate2(frame_number, count, lyric, is_new_lyric, text, title):
+    print(f"generate2: {frame_number}, {count}, {lyric}, {is_new_lyric}, {text}, {title}")
     if (lyric is None):
-        generate_blank2(frame_number, count, text)
+        generate_blank2(frame_number, count, text, title)
         return
     
     path = IMAGE_ROOT_PATH + format_number(frame_number) + ".png"
