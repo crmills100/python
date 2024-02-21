@@ -2,6 +2,8 @@ import requests
 import json
 import io
 import base64
+import shutil
+
 from PIL import Image
 
 from moviepy.editor import *
@@ -11,17 +13,18 @@ change_settings({"IMAGEMAGICK_BINARY": r"C:\\opt\\ImageMagick-7.1.0-Q16-HDRI\\ma
 
 from config import Config
 
+
 config = Config();
 
 URL = config.get_web_service_url();
 SIZE_VGA = (640, 480)
 
 
-def create_image(size, prompt, is_new_lyric, text, fontsize, path):
+def create_image(size, prompt, is_new_lyric, text, fontsize, path, temp_dir):
     """ create an image of dimensions size(width, height)) based on the text prompt, write the image to the path
     
     """
-    generate_ai_image(size, prompt, path)
+    generate_ai_image(size, prompt, path, is_new_lyric, temp_dir)
 
     input_image = ImageClip(path)
 
@@ -59,7 +62,7 @@ def create_image(size, prompt, is_new_lyric, text, fontsize, path):
     return path
 
 
-def generate_ai_image(size, prompt, path):
+def generate_ai_image(size, prompt, path, is_new_lyric, temp_dir):
     payload = json.dumps({
         "prompt": prompt,
         "steps": 5,
@@ -67,6 +70,14 @@ def generate_ai_image(size, prompt, path):
         "height": size[1],
     })
 
+    temp_path = temp_dir + "temp.png"
+
+    if (not is_new_lyric):
+        print(f"generate_ai_image returning image from cache")
+        copy_file(temp_path, path)
+        return path
+
+    print(f"generate_ai_image generating image")
     print(payload)
   
 
@@ -80,9 +91,14 @@ def generate_ai_image(size, prompt, path):
 
     image = Image.open(io.BytesIO(base64.b64decode(r['images'][0])))
 
-    image.save(path)
+    image.save(temp_path)
+    copy_file(temp_path, path)
 
     return path
+
+def copy_file(source_path, destination_path):
+    shutil.copyfile(source_path, destination_path)
+
 
 #create_image(SIZE_VGA, "ultra realistic close up portrait ((beautiful pale cyberpunk female with heavy black eyeliner))", 20, "foo.png")
 
