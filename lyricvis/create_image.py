@@ -33,7 +33,7 @@ def copy_file(source_path, destination_path):
     shutil.copyfile(source_path, destination_path)
 
 
-def create_video(image_root_path, fps, audio_path, output_path):
+def create_video(image_root_path, fps, audio_path, output_path, length):
     print(f"create_video {image_root_path} {fps}, {output_path}")
 
 
@@ -43,6 +43,9 @@ def create_video(image_root_path, fps, audio_path, output_path):
     # Sort image files by name (assuming the file names represent the order)
     image_files.sort()
     print(f"There are ", len(image_files), " image files")
+    if (len(image_files) != length):
+        print(f"len(image_files) != length")
+        exit(-1)
         
     # Create ImageSequenceClip
     clip = ImageSequenceClip([os.path.join(image_root_path, f) for f in image_files], fps=fps)
