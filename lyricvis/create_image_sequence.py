@@ -77,16 +77,17 @@ def create_image_sequence(frame_info):
     frame = curr
     num_frames = 0
     generated_frame_count = 0
+    prev_prompt = None
     
     for frame in frame_info:
         if (frame.num == 0):
             continue
-        if (curr.prompt == frame.prompt and curr.text == frame.text):
+        if ((curr.prompt == frame.prompt) and (curr.text == frame.text)):
             num_frames = num_frames + 1
         else:
-            #print(f"curr: '{curr.prompt}' frame:'{frame.prompt}'")
             num_frames = num_frames + 1
-            generate2(curr.num, num_frames, curr.prompt, curr.prompt != frame.prompt, curr.text)
+            generate2(curr.num, num_frames, curr.prompt, prev_prompt != curr.prompt, curr.text)
+            prev_prompt = curr.prompt
             generated_frame_count = generated_frame_count + num_frames
             curr = frame
             num_frames = 0
@@ -95,7 +96,7 @@ def create_image_sequence(frame_info):
     generate2(curr.num, num_frames, curr.prompt, curr.prompt != frame.prompt, curr.text)
     generated_frame_count = generated_frame_count + num_frames
     
-    print(f"create_image_sequence generated {generated_frame_count} frames vs {len(frame_info)}")
+    print(f"create_image_sequence generated {generated_frame_count+1} frames vs {len(frame_info)}")
 
 
 
