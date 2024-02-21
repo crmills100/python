@@ -130,7 +130,7 @@ Prototype IV: - complete
 Prototype V:
 	add title credits
 	add logo
-	add end credits
+	add end credits - complete
 
 Prototype VI:
 	code cleanup
