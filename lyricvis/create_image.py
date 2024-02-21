@@ -22,12 +22,47 @@ def create_image(size, prompt, fontsize, path):
     return path
 
 
+def create_transparent_image(size, prompt, fontsize, path):
+    # Create a TextClip with transparent background
+
+    print("Hello from a create_transparent_image: ", size, prompt, path)
+
+    text_clip = TextClip(txt=prompt, size=size, fontsize=fontsize, font="Lane", color="white", bg_color="transparent")
+
+    text_clip.save_frame(path)
+    
+    return path
+
+
+
+
 def create_blank(size, path):
     text_clip = TextClip(txt=" ", size=size, fontsize=10, font="Lane", color="white", bg_color="black")
 
     text_clip.save_frame(path)
 
     return path
+
+
+def overlay_images(background_path, overlay_path, output_path):
+    # Load images
+    background = ImageClip(background_path)
+    overlay = ImageClip(overlay_path)
+
+    # Ensure both images have the same dimensions
+    width = max(background.size[0], overlay.size[0])
+    height = max(background.size[1], overlay.size[1])
+
+    background = background.resize((width, height))
+    overlay = overlay.resize((width, height))
+
+    # Overlay one image over the other
+    overlayed_clip = CompositeVideoClip([background, overlay.set_position('center')])
+
+    # Write the overlayed image to a file
+    overlayed_clip.to_ImageClip().save_frame(output_path)
+
+    print(f"Images overlayed and saved to {output_path}")
 
 def copy_file(source_path, destination_path):
     shutil.copyfile(source_path, destination_path)
