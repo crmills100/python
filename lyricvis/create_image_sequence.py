@@ -6,7 +6,8 @@ import os
 SIZE_VGA = (640, 480)
 FONTSIZE=20
 IMAGE_ROOT_PATH = "C:\\temp\\lyric_vis\\"
-BLANK_IMAGE_PATH = IMAGE_ROOT_PATH + "blank.png"
+IMAGE_TEMP_DIR = "C:\\temp\\lyric_vis\\temp\\"
+BLANK_IMAGE_PATH = IMAGE_TEMP_DIR + "blank.png"
 TARGET_VIDEO_PATH = "C:\\temp\\out.mp4"
 GEN_IMAGES = True
 
@@ -93,10 +94,10 @@ def create_image_sequence(frame_info):
             num_frames = 0
 
     
-    generate2(curr.num, num_frames, curr.prompt, curr.prompt != frame.prompt, curr.text)
-    generated_frame_count = generated_frame_count + num_frames
+    generate2(curr.num, num_frames + 1, curr.prompt, curr.prompt != frame.prompt, curr.text)
+    generated_frame_count = generated_frame_count + num_frames + 1
     
-    print(f"create_image_sequence generated {generated_frame_count+1} frames vs {len(frame_info)}")
+    print(f"create_image_sequence generated {generated_frame_count} frames vs {len(frame_info)}")
 
 
 
@@ -118,7 +119,7 @@ def generate2(frame_number, count, lyric, is_new_lyric, text):
     
     path = IMAGE_ROOT_PATH + format_number(frame_number) + ".png"
     if (GEN_IMAGES):
-        initial = create_image_sd.create_image(SIZE_VGA, lyric, is_new_lyric, text, FONTSIZE, path)
+        initial = create_image_sd.create_image(SIZE_VGA, lyric, is_new_lyric, text, FONTSIZE, path, IMAGE_TEMP_DIR)
 
         for x in range(1, count):
             copy_path = IMAGE_ROOT_PATH + format_number(frame_number + x) + ".png"
@@ -229,4 +230,4 @@ for frame in frame_info:
 
 create_image_sequence(frame_info)
 
-#create_image.create_video(IMAGE_ROOT_PATH, FPS, audio_path, TARGET_VIDEO_PATH)
+create_image.create_video(IMAGE_ROOT_PATH, FPS, audio_path, TARGET_VIDEO_PATH, total_frames)
