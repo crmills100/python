@@ -128,9 +128,11 @@ Prototype IV: - complete
 	add sound to generated video
 
 Prototype V:
-	add title credits
+	add title credits - complete
 	add logo
+		composite an image with an image with transparency - complete
 	add end credits - complete
+	add title graphic
 
 Prototype VI:
 	code cleanup

@@ -1,13 +1,14 @@
 import json
+import os
 
 class Song:
 
-    def __init__(self, title, artist, length, audio, title_graphic, lyrics, titles=None, credits=None):
+    def __init__(self, title, artist, length, audio, cover_graphic, lyrics, titles=None, credits=None):
         self.title = title
         self.artist = artist
         self.length = length
         self.audio = audio
-        self.title_graphic = title_graphic
+        self.cover_graphic = cover_graphic
         self.lyrics = lyrics
         self.titles = titles or []
         self.credits = credits or []
@@ -21,7 +22,7 @@ class Song:
         print(f"Artist: {self.artist}")
         print(f"Length: {self.length}")
         print(f"Audio: {self.audio}")
-        print(f"Title Graphic: {self.title_graphic}")
+        print(f"Cover Graphic: {self.cover_graphic}")
         print("Lyrics:")
         for lyric_info in self.lyrics:
             print(f"Timestamp: {lyric_info['timestamp']} - Lyric: {lyric_info['lyric']}")
@@ -48,10 +49,10 @@ class Song:
         artist = data['artist']
         length = data['length']
         audio = data['audio']
-        title_graphic = data['title_graphic']
+        cover_graphic = data['cover_graphic']
         lyrics = data['lyrics']
         titles = data['titles']
-        song = Song(song_title, artist, length, audio, title_graphic, lyrics, titles)
+        song = Song(song_title, artist, length, audio, cover_graphic, lyrics, titles)
 
         # Parse and add credits from JSON data
         credits = data['credits']
@@ -63,5 +64,13 @@ class Song:
 
         return song
     
+    def get_cover_graphic_path(self, path):
+        graphic_directory = os.path.dirname(path)
+
+        print(f"self.cover_graphic: {self.cover_graphic}")
+        print(f"graphic_directory: {graphic_directory}")
     
+        cover_graphic_path = os.path.join(graphic_directory, self.cover_graphic)
+        print(f"cover_graphic_path: {cover_graphic_path}")
         
+        return cover_graphic_path

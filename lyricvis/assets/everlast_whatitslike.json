@@ -4,10 +4,12 @@
   "length": "00:01:00",
   "audio": "everlast_whatitslike.mp3",
   "lyrics_url": "https://genius.com/Everlast-what-its-like-lyrics",
-  "title_graphic": "everlast_whatitslike.png",
+  "cover_graphic": "everlast_whatitslike.png",
   "titles": [
-    "Bebe Coin Power Presents",
-    "A Generative AI Music Experience"
+    "Bebe Coin and Power Presents",
+    "A Generative AI Music Experience",
+    "Stable Diffusion text-to-image translation",
+    "NVIDIA GeForce RTX 30 Series"
   ],
 
   "lyrics": [
@@ -40,6 +42,7 @@
     {"Directed By": "Christopher Mills"},
     {"Produced By": "Christopher Mills"},
     {"Visual Effects": "Stable Diffusion"},
+    {"Hardware": "Bebe Coin and Power Tower w/ NVIDIA RTX 3060"},
     {"": "Copyright @ 2024 Christopher Mills"}
   ]
 
