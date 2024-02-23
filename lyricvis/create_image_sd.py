@@ -20,7 +20,7 @@ URL = config.get_web_service_url();
 SIZE_VGA = (640, 480)
 
 
-def create_image(size, prompt, is_new_lyric, text, fontsize, path, temp_dir):
+def create_image(size, prompt, is_new_lyric, text, fontsize, path, temp_dir, color="white"):
     """ create an image of dimensions size(width, height)) based on the text prompt, write the image to the path
     
     """
@@ -29,7 +29,7 @@ def create_image(size, prompt, is_new_lyric, text, fontsize, path, temp_dir):
     input_image = ImageClip(path)
 
     # Create a TextClip with the provided text
-    text_clip = TextClip(prompt, fontsize=fontsize, color="white", method='label', size=size)
+    text_clip = TextClip(prompt, fontsize=fontsize, color=color, method='label', size=size)
 
     #border_size = 3
     border_clip = TextClip(prompt, fontsize=fontsize, color='black', method='label', size=size)
