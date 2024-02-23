@@ -1,7 +1,7 @@
 {
   "song_title": "What It's Like",
   "artist": "Everlast",
-  "length": "00:01:00",
+  "length": "00:04:32",
   "audio": "everlast_whatitslike.mp3",
   "lyrics_url": "https://genius.com/Everlast-what-its-like-lyrics",
   "cover_graphic": "everlast_whatitslike.png",
@@ -22,21 +22,199 @@
       "lyric": "The hair on his face is dirty, dreadlocked and full of mange"
     },
     {
-      "timestamp": "00:00:34",
+      "timestamp": "00:00:35",
       "lyric": "He asks a man for what he could spare with shame in his eyes"
     },
     {
-      "timestamp": "00:00:41",
+      "timestamp": "00:00:40",
       "lyric": "But, \"Get a job, you fuckin' slob!\" is all he replied"
     },
     {
-      "timestamp": "00:00:47",
+      "timestamp": "00:00:46",
       "lyric": "Well, God forbid you ever had to walk a mile in his shoes"
     },
     {
-      "timestamp": "00:00:53",
+      "timestamp": "00:00:51",
       "lyric": "'Cause then you really might know what it's like to sing the blues"
-    }],
+    },
+    {
+      "timestamp": "00:00:58",
+      "lyric": "Then you really might know what it's like (what it's like)"
+    },
+    {
+      "timestamp": "00:01:03",
+      "lyric": " Then you really might know what it's like (what it's like) "
+    },
+    {
+      "timestamp": "00:01:08",
+      "lyric": "Then you really might know what it's like (what it's like)"
+    },
+    {
+      "timestamp": "00:01:15",
+      "lyric": " Then you really might know what it's like (what it's like) "
+    },
+    {
+      "timestamp": "00:01:20",
+      "lyric": "Mary got pregnant from a kid named Tom who said he was in love"
+    },
+    {
+      "timestamp": "00:01:25",
+      "lyric": "He said: \"Don't worry about a thing, baby doll; \nI'm the man you've been dreamin' of\""
+    },
+    {
+      "timestamp": "00:01:31",
+      "lyric": "But three months later he said he won't date her or return her calls"
+    },
+    {
+      "timestamp": "00:01:36",
+      "lyric": "And she sweared, \"Goddamn, If I find that man I'm cuttin' off his balls!\""
+    },
+    {
+      "timestamp": "00:01:42",
+      "lyric": "And then she heads for the clinic and she gets some \nstatic walkin' through the door:"
+    },
+    {
+      "timestamp": "00:01:48",
+      "lyric": "They call her a killer, and they call her a sinner, \nand they call her a whore!"
+    },
+    {
+      "timestamp": "00:01:54",
+      "lyric": "God forbid you ever had to walk a mile in her shoes"
+    },
+    {
+      "timestamp": "00:01:59",
+      "lyric": "Cause then you really might know what it's like to have to choose"
+    },
+    {
+      "timestamp": "00:02:05",
+      "lyric": "Then you really might know what it's like (what it's like)"
+    },
+    {
+      "timestamp": "00:02:11",
+      "lyric": " Then you really might know what it's like (what it's like) "
+    },
+    {
+      "timestamp": "00:02:17",
+      "lyric": "Then you really might know what it's like (what it's like)"
+    },
+    {
+      "timestamp": "00:02:22",
+      "lyric": " Then you really might know what it's like (what it's like) "
+    },
+    {
+      "timestamp": "00:02:27",
+      "lyric": "I've seen a rich man beg"
+    },
+    {
+      "timestamp": "00:02:29",
+      "lyric": "I've seen a good man sin"
+    },
+    {
+      "timestamp": "00:02:30",
+      "lyric": "I've seen a tough man cry"
+    },
+    {
+      "timestamp": "00:02:33",
+      "lyric": "I've seen a loser win"
+    },
+    {
+      "timestamp": "00:02:35",
+      "lyric": "And a sad man grin"
+    },
+    {
+      "timestamp": "00:02:36",
+      "lyric": "I heard an honest man lie"
+    },
+    {
+      "timestamp": "00:02:38",
+      "lyric": "I've seen the good side of bad and the down side of up"
+    },
+    {
+      "timestamp": "00:02:42",
+      "lyric": "And everything between"
+    },
+    {
+      "timestamp": "00:02:44",
+      "lyric": "I licked the silver spoon, drank from the golden cup"
+    },
+    {
+      "timestamp": "00:02:47",
+      "lyric": "Smoked the finest green"
+    },
+    {
+      "timestamp": "00:02:50",
+      "lyric": "I stroked the baddest dimes"
+    },
+    {
+      "timestamp": "00:02:52",
+      "lyric": "At least a couple of times"
+    },
+    {
+      "timestamp": "00:02:53",
+      "lyric": "Before I broke their heart"
+    },
+    {
+      "timestamp": "00:02:56",
+      "lyric": "You know where it ends"
+    },
+    {
+      "timestamp": "00:02:57",
+      "lyric": "Yo, it usually depends"
+    },
+    {
+      "timestamp": "00:02:58",
+      "lyric": "On where you start"
+    },
+    {
+      "timestamp": "00:03:12",
+      "lyric": "I knew this kid named Max, \nhe used to get fat stacks out on the corner with drugs"
+    },
+    {
+      "timestamp": "00:03:17",
+      "lyric": "He liked to hang out late, \nliked to get shit faced and keep pace with thugs"
+    },
+    {
+      "timestamp": "00:03:23",
+      "lyric": "Until late one night there was a big gunfight and Max lost his head"
+    },
+    {
+      "timestamp": "00:03:29",
+      "lyric": "He pulled out his chrome .45, talked some shit and wound up dead"
+    },
+    {
+      "timestamp": "00:03:35",
+      "lyric": "Now his wife and his kids are caught in the midst of all of his pain"
+    },
+    {
+      "timestamp": "00:03:41",
+      "lyric": "You know it comes that way, \nat least that's what they say when you play the game"
+    },
+    {
+      "timestamp": "00:03:46",
+      "lyric": "God forbid you ever had to wake up to hear the news"
+    },
+    {
+      "timestamp": "00:03:52",
+      "lyric": "Cause then you really might know what it's like to have to lose"
+    },
+    {
+      "timestamp": "00:03:58",
+      "lyric": "Then you really might know what it's like (what it's like)"
+    },
+    {
+      "timestamp": "00:04:03",
+      "lyric": " Then you really might know what it's like (what it's like) "
+    },
+    {
+      "timestamp": "00:04:08",
+      "lyric": "Then you really might know what it's like (what it's like)"
+    },
+    {
+      "timestamp": "00:04:13",
+      "lyric": "To have to lose..."
+    }
+  ],
+    
 
   "credits": [
     {"Directed By": "Christopher Mills"},

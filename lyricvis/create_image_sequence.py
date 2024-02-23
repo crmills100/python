@@ -117,7 +117,7 @@ def create_image_sequence(frame_info):
             num_frames = 0
 
     
-    generate2(curr.num, num_frames + 1, curr.prompt, curr.prompt != frame.prompt, curr.text, curr.title, curr.graphic_path)
+    generate2(curr.num, num_frames, curr.prompt, curr.prompt != frame.prompt, curr.text, curr.title, curr.graphic_path)
     generated_frame_count = generated_frame_count + num_frames + 1
     
     print(f"create_image_sequence generated {generated_frame_count} frames vs {len(frame_info)}")
@@ -277,7 +277,7 @@ for f in frame_info:
 i = 0
 for frame in frame_info:
     if (frame.num != i):
-        print(f"Frame {frame.num} is not right")
+        print(f"Frame {frame.num} is not right {frame.num} != {i}")
         exit(-1)
     i = i + 1
 

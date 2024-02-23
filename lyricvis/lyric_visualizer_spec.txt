@@ -35,6 +35,10 @@ https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Command-Line-Argume
 Songs to Test With:
 ===================
 
+Everlast - What it's Like
+https://www.youtube.com/watch?v=qA1nGPM9yHA
+
+
 Lil Wayne - Got Money ft. T-Pain
 https://www.youtube.com/watch?v=1ohYsK5Y8Dc
 
@@ -132,7 +136,7 @@ Prototype V:
 	add logo
 		composite an image with an image with transparency - complete
 	add end credits - complete
-	add title graphic
+	add title graphic - one frame at beginning
 
 Prototype VI:
 	code cleanup
