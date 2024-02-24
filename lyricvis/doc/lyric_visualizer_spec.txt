@@ -11,6 +11,8 @@ Repository:
     https://github.com/crmills100/python/tree/main/lyricvis
 	
 
+
+
 Resources:
 
 1. Basic python to make a video with images
@@ -131,14 +133,14 @@ Prototype III: - complete
 Prototype IV: - complete
 	add sound to generated video
 
-Prototype V:
+Prototype V: - complete
 	add title credits - complete
 	add logo
 		composite an image with an image with transparency - complete
 	add end credits - complete
-	add title graphic - one frame at beginning
+	add title graphic - N frames at beginning - complete
 
-Prototype VI:
+Prototype VI: - complete
 	code cleanup
 	unittesting
 
@@ -148,6 +150,17 @@ Prototype VII:
 Publish Prototype:
 	Publish to youtube
 
+Contest:
+	1. Promo Video 
+		- storyboard: select 5 sonds (3 choosen)
+		- subclip ~10 sec of audio from each
+		- concatenate
+		- add lyrics
+		- create video
+	2. Create social media post (use AI to generate text)
+	3. Contest submission
+	4. Cleanup/edits to github Repository
+	5. Publish full songs
 
 Additional features:
     - Color mapping (example only red + white for xmas)
