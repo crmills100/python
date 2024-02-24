@@ -46,5 +46,5 @@ Assumptions: assume 1080p (1920x1080)
 
 # Caveats
 
-I've only run this on a limited amount of hardware (client running on a Windows 10 host with Stable Diffusion running on a Windows 11 host with an RTX 30 series GPU). As a result, there are likely a few references
+I've only run this on a limited amount of hardware (client running on a Windows 10 host with Stable Diffusion running on a Windows 11 host with a RTX 30 series GPU). As a result, there are likely a few references
 to directories that may not exist and are certainly not platform agnostic. If you fix these please send a patch.
