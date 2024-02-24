@@ -147,8 +147,8 @@ Prototype VI: - complete
 Prototype VII:
 	create 3 videos
 
-Publish Prototype:
-	Publish to youtube
+Publish Prototype: - complete
+	Publish single video to youtube
 
 Contest:
 	1. Promo Video 
