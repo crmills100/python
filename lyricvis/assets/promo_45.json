@@ -1,0 +1,87 @@
+{
+  "song_title": "NIVIDA RTX text-to-image",
+  "artist": "Christopher Mills",
+  "length": "00:00:50",
+  "audio": "promo_45.mp3",
+  "lyrics_url": "https://genius.com/Everlast-what-its-like-lyrics",
+  "cover_graphic": "promo_45.png",
+  "titles": [
+    "Bebe Coin and Power Presents",
+    "A Generative AI Music Experience",
+    "Stable Diffusion text-to-image translation",
+    "NVIDIA GeForce RTX 30 Series"
+  ],
+
+  "lyrics": [
+    {
+      "timestamp": "00:00:02",
+      "lyric": "Baby, I need you till the morning"
+    },
+    {
+      "timestamp": "00:00:05",
+      "lyric": "I hear my body calling"
+    },
+    {
+      "timestamp": "00:00:07",
+      "lyric": "So keep the party rocking all night"
+    },
+    {
+      "timestamp": "00:00:10",
+      "lyric": "Baby, oh, we can skip the talking"
+    },
+    {
+      "timestamp": "00:00:12",
+      "lyric": "You know there's only one thing tonight"
+    },
+    {
+      "timestamp": "00:00:15",
+      "lyric": "'So won't you come rock my body?"
+    },
+    {
+      "timestamp": "00:00:17",
+      "lyric": "Lay low, hit the sun\nEverybody have a real good time"
+    },
+    {
+      "timestamp": "00:00:23",
+      "lyric": "Real good time (surround me)"
+    },
+    {
+      "timestamp": "00:00:25",
+      "lyric": "Yeah, we cool, yeah, we drunk"
+    },
+    {
+      "timestamp": "00:00:27",
+      "lyric": "Lost my mind and, baby, I feel high"
+    },
+    {
+      "timestamp": "00:00:30",
+      "lyric": "I feel high (they're calling on me)"
+    },
+    {
+      "timestamp": "00:00:33",
+      "lyric": "Baby, I'm wasted"
+    },
+    {
+      "timestamp": "00:00:37",
+      "lyric": "All I wanna do is drive home to you"
+    },
+    {
+      "timestamp": "00:00:41",
+      "lyric": "Baby, I'm faded"
+    },
+    {
+      "timestamp": "00:00:45",
+      "lyric": "All I wanna do is take you downtown\nBaby"
+    }
+  ],
+    
+
+  "credits": [
+    {"Directed By": "Christopher Mills"},
+    {"Produced By": "Christopher Mills"},
+    {"Visual Effects": "Stable Diffusion"},
+    {"Hardware": "Bebe Coin and Power Tower w/ NVIDIA RTX 3060"},
+    {"": "Copyright @ 2024 Christopher Mills"}
+  ]
+
+}

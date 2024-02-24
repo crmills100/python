@@ -17,7 +17,6 @@ from config import Config
 config = Config();
 
 URL = config.get_web_service_url();
-SIZE_VGA = (640, 480)
 
 
 def create_image(size, prompt, is_new_lyric, text, fontsize, path, temp_dir, color="white"):
@@ -100,5 +99,4 @@ def copy_file(source_path, destination_path):
     shutil.copyfile(source_path, destination_path)
 
 
-#create_image(SIZE_VGA, "ultra realistic close up portrait ((beautiful pale cyberpunk female with heavy black eyeliner))", 20, "foo.png")
 

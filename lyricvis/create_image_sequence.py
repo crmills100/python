@@ -4,6 +4,8 @@ import create_image_sd
 import os
 
 SIZE_VGA = (640, 480)
+SIZE_720 = (1280, 720)
+SIZE_VIDEO = SIZE_VGA
 FONTSIZE=20
 IMAGE_ROOT_PATH = "C:\\temp\\lyric_vis\\"
 IMAGE_TEMP_DIR = "C:\\temp\\lyric_vis\\temp\\"
@@ -16,7 +18,8 @@ SECS_PER_WORD = 2
 MAX_FRAMES = 100000
 
 #song_file_path = 'assets/example_song.json'
-song_file_path = 'assets/everlast_whatitslike.json'
+#song_file_path = 'assets/everlast_whatitslike.json'
+song_file_path = 'assets/promo_45.json'
 
 
 class FrameInfo:
@@ -133,7 +136,7 @@ def generate_blank2(frame_number, count, text, title):
         orig_path = BLANK_IMAGE_PATH
         if (title != None):
             path = IMAGE_TEMP_DIR + "blank_w_text.png"
-            create_image.create_image(SIZE_VGA, title, FONTSIZE, path)
+            create_image.create_image(SIZE_VIDEO, title, FONTSIZE, path)
             orig_path = path
 
         # TODO: currently ignoring blank text frames, determine if this should be changed
@@ -159,7 +162,7 @@ def generate2(frame_number, count, lyric, is_new_lyric, text, title, graphic_pat
     
     path = IMAGE_ROOT_PATH + format_number(frame_number) + ".png"
     if (GEN_IMAGES):
-        initial = create_image_sd.create_image(SIZE_VGA, lyric, is_new_lyric, text, FONTSIZE, path, IMAGE_TEMP_DIR)
+        initial = create_image_sd.create_image(SIZE_VIDEO, lyric, is_new_lyric, text, FONTSIZE, path, IMAGE_TEMP_DIR)
 
         for x in range(1, count):
             copy_path = IMAGE_ROOT_PATH + format_number(frame_number + x) + ".png"
@@ -167,7 +170,7 @@ def generate2(frame_number, count, lyric, is_new_lyric, text, title, graphic_pat
         
 
 def init():
-    create_image.create_blank(SIZE_VGA, BLANK_IMAGE_PATH)
+    create_image.create_blank(SIZE_VIDEO, BLANK_IMAGE_PATH)
 
 
 def get_audio_file_path(song_file_path, song):
@@ -192,7 +195,7 @@ total_frames = timestamp_to_frames(song.length)
 print(f"total_frames: {total_frames}")
 print(len(frame_info))
 
-cover_frame_count = FPS * 4
+cover_frame_count = 20 # FPS * 1
 add_cover_frames(frame_info, current_frame, cover_frame_count, song, song_file_path)
 current_frame = current_frame + cover_frame_count
 
