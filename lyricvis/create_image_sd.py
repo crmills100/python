@@ -19,7 +19,7 @@ config = Config();
 URL = config.get_web_service_url();
 
 
-def create_image(size, prompt, is_new_lyric, text, fontsize, path, temp_dir, color="white"):
+def create_image(size, prompt, is_new_lyric, text, title, fontsize, path, temp_dir, color="white"):
     """ create an image of dimensions size(width, height)) based on the text prompt, write the image to the path
     
     """
