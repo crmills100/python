@@ -11,6 +11,7 @@ IMAGE_ROOT_PATH = "C:\\temp\\lyric_vis\\"
 IMAGE_TEMP_DIR = "C:\\temp\\lyric_vis\\temp\\"
 BLANK_IMAGE_PATH = IMAGE_TEMP_DIR + "blank.png"
 TARGET_VIDEO_PATH = "C:\\temp\\out.mp4"
+MODE_VIDEO = 'Text' # or 'Image'
 GEN_IMAGES = True
 
 FPS = 30
@@ -31,7 +32,7 @@ class FrameInfo:
         self.graphic_path = graphic_path
 
     def __str__(self):
-        return f"FrameInfo(num='{self.num}', prompt='{self.prompt}', text='{self.text}, title='{self.title}, graphic_path='{self.graphic_path}')"
+        return f"FrameInfo(num='{self.num}', prompt='{self.prompt}', text='{self.text}', title='{self.title}, graphic_path='{self.graphic_path}')"
 
 
 def format_number(integer):
@@ -120,7 +121,7 @@ def create_image_sequence(frame_info):
             num_frames = 0
 
     
-    generate2(curr.num, num_frames, curr.prompt, curr.prompt != frame.prompt, curr.text, curr.title, curr.graphic_path)
+    generate2(curr.num, num_frames + 1, curr.prompt, curr.prompt != frame.prompt, curr.text, curr.title, curr.graphic_path)
     generated_frame_count = generated_frame_count + num_frames + 1
     
     print(f"create_image_sequence generated {generated_frame_count} frames vs {len(frame_info)}")
@@ -136,7 +137,7 @@ def generate_blank2(frame_number, count, text, title):
         orig_path = BLANK_IMAGE_PATH
         if (title != None):
             path = IMAGE_TEMP_DIR + "blank_w_text.png"
-            create_image.create_image(SIZE_VIDEO, title, FONTSIZE, path)
+            create_image.create_image3(SIZE_VIDEO, text, title, FONTSIZE, path)
             orig_path = path
 
         # TODO: currently ignoring blank text frames, determine if this should be changed
@@ -162,7 +163,10 @@ def generate2(frame_number, count, lyric, is_new_lyric, text, title, graphic_pat
     
     path = IMAGE_ROOT_PATH + format_number(frame_number) + ".png"
     if (GEN_IMAGES):
-        initial = create_image_sd.create_image(SIZE_VIDEO, lyric, is_new_lyric, text, FONTSIZE, path, IMAGE_TEMP_DIR)
+        if (MODE_VIDEO == 'Image'):
+            initial = create_image_sd.create_image(SIZE_VIDEO, lyric, is_new_lyric, text, title, FONTSIZE, path, IMAGE_TEMP_DIR)
+        else:
+            initial = create_image.create_image(SIZE_VIDEO, lyric, is_new_lyric, text, title, FONTSIZE, path, IMAGE_TEMP_DIR);
 
         for x in range(1, count):
             copy_path = IMAGE_ROOT_PATH + format_number(frame_number + x) + ".png"
