@@ -12,15 +12,15 @@ IMAGE_TEMP_DIR = "C:\\temp\\lyric_vis\\temp\\"
 BLANK_IMAGE_PATH = IMAGE_TEMP_DIR + "blank.png"
 TARGET_VIDEO_PATH = "C:\\temp\\out.mp4"
 MODE_VIDEO = 'Text' # or 'Image'
-GEN_IMAGES = True
+GEN_IMAGES = False
 
 FPS = 30
 SECS_PER_WORD = 2
 MAX_FRAMES = 100000
 
 #song_file_path = 'assets/example_song.json'
-#song_file_path = 'assets/everlast_whatitslike.json'
-song_file_path = 'assets/promo_45.json'
+song_file_path = 'assets/everlast_whatitslike.json'
+#song_file_path = 'assets/promo_45.json'
 
 
 class FrameInfo:
@@ -121,7 +121,7 @@ def create_image_sequence(frame_info):
             num_frames = 0
 
     
-    generate2(curr.num, num_frames + 1, curr.prompt, curr.prompt != frame.prompt, curr.text, curr.title, curr.graphic_path)
+    generate2(curr.num, num_frames, curr.prompt, curr.prompt != frame.prompt, curr.text, curr.title, curr.graphic_path)
     generated_frame_count = generated_frame_count + num_frames + 1
     
     print(f"create_image_sequence generated {generated_frame_count} frames vs {len(frame_info)}")
