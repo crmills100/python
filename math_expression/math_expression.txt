@@ -1,0 +1,17 @@
+
+
+if ( x == 5 && y == 2 )
+
+
+eval( 5 ) -> 5
+
+eval( x ) - > 4
+
+and( equal( eval( x ), eval( 5 ) ), equal( eval( y ), eval( 2 ) ) 
+
+eval( "PresenceOfDpression == 1" )
+
+
+https://bradfieldcs.com/algos/trees/parse-trees/
+https://www.geeksforgeeks.org/stack-in-python/
+https://www.educative.io/answers/how-to-represent-a-mathematical-expression-using-the-parse-tree
