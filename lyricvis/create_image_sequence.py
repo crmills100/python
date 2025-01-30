@@ -12,7 +12,7 @@ IMAGE_TEMP_DIR = "C:\\temp\\lyric_vis\\temp\\"
 BLANK_IMAGE_PATH = IMAGE_TEMP_DIR + "blank_640x480.png"
 TARGET_VIDEO_PATH = "C:\\temp\\out.mp4"
 MODE_VIDEO = 'Text' # or 'Image'
-GEN_IMAGES = False
+GEN_IMAGES = True
 
 FPS = 30
 SECS_PER_WORD = 2
@@ -252,7 +252,7 @@ if not current_lyric is None:
 
     else:
         # gen frames_to_next
-        add_frame(frame_info, current_frame, frames_to_next, current_lyric)
+        add_frame(frame_info, current_frame, frames_to_next + 1, current_lyric)
 
 
 # add titles
