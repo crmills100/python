@@ -23,6 +23,10 @@ There are two components to the installation: 1. Stable Diffusion to generate im
 
 1. Install Stable Diffussion and AUTOMATIC1111 locally.
 2. Configure the URL to webui.sd in config.json
+3. Configure paths in create_image_sequence.py
+    IMAGE_ROOT_PATH
+	IMAGE_TEMP_DIR
+
 
 ## lyricvis:
 
@@ -67,7 +71,15 @@ The instructions below have been tested on a Windows 11 host using Python 3.13.0
 
 2. Create assets that describe the video to create (see doc/promo_instructions.md)
 
-3. Generate a video for a song on localhost:
+3. Configuration:
+
+    Parameters for execution:
+        TARGET_VIDEO_PATH - path of generated video
+        GEN_IMAGES - boolean (True or False) determines to regenerate images for each frame or not
+		VIDEO_MODE - 'Text' generate text frames from lyrics or 'Image' to use generative AI image generation
+
+
+4. Generate a video for a song on localhost:
 	Start the virtualenv:
 		pipenv shell
 	Run the generator:

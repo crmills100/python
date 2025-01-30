@@ -144,7 +144,10 @@ Prototype VI: - complete
 	code cleanup
 	unittesting
 
-Prototype VII:
+Prototype VII: - complete
+    text mode
+
+Prototype VIII:
 	create 3 videos
 
 Publish Prototype: - complete
@@ -162,10 +165,11 @@ Contest:
 	4. Cleanup/edits to github Repository
 	5. Publish full songs
 
-Additional features:
+Additional features / TODO:
     - Color mapping (example only red + white for xmas)
 	- Additonal hints for image lyric that is not displayed on the screen but used for AI image generation
-
+	- Sub-second (per frame) resolution
+	- Parameters into a file / program arguments
 		
 
 
