@@ -1,7 +1,7 @@
 from moviepy.editor import *
 
 from moviepy.config import change_settings
-change_settings({"IMAGEMAGICK_BINARY": r"C:\\opt\\ImageMagick-7.1.0-Q16-HDRI\\magick.exe"})
+change_settings({"IMAGEMAGICK_BINARY": r"C:\\opt\\ImageMagick-7.1.1-Q16-HDRI\\magick.exe"})
 
 import shutil
 import os

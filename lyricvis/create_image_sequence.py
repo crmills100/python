@@ -9,7 +9,7 @@ SIZE_VIDEO = SIZE_VGA
 FONTSIZE=20
 IMAGE_ROOT_PATH = "C:\\temp\\lyric_vis\\"
 IMAGE_TEMP_DIR = "C:\\temp\\lyric_vis\\temp\\"
-BLANK_IMAGE_PATH = IMAGE_TEMP_DIR + "blank.png"
+BLANK_IMAGE_PATH = IMAGE_TEMP_DIR + "blank_640x480.png"
 TARGET_VIDEO_PATH = "C:\\temp\\out.mp4"
 MODE_VIDEO = 'Text' # or 'Image'
 GEN_IMAGES = False
@@ -19,8 +19,8 @@ SECS_PER_WORD = 2
 MAX_FRAMES = 100000
 
 #song_file_path = 'assets/example_song.json'
-song_file_path = 'assets/everlast_whatitslike.json'
-#song_file_path = 'assets/promo_45.json'
+#song_file_path = 'assets/everlast_whatitslike.json'
+song_file_path = 'assets/promo_45.json'
 
 
 class FrameInfo:

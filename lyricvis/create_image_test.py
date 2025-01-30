@@ -11,14 +11,14 @@ class CreateImageTest(unittest.TestCase):
         pass
 
     def test_create_image(self):
-        create_image.create_image(SIZE_VGA, "This is a test!!", FONTSIZE, IMAGE_ROOT_PATH + "001.png")
+        create_image.create_image3(SIZE_VGA, "This is a test!!", None, FONTSIZE, IMAGE_ROOT_PATH + "001.png")
 
     def test_create_blank(self):
         create_image.create_blank(SIZE_VGA, IMAGE_ROOT_PATH + "blank_640x480.png")
 
     def test_overlay_images(self):
         background_path = IMAGE_ROOT_PATH + "background.png"
-        create_image.create_image(SIZE_VGA, "This is a test!!", FONTSIZE, background_path)
+        create_image.create_image3(SIZE_VGA, "This is a test!!", None, FONTSIZE, background_path)
 
         overlay_path = IMAGE_ROOT_PATH + "overlay.png"
         create_image.create_transparent_image(SIZE_VGA, "More text", FONTSIZE, overlay_path)
