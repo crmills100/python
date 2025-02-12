@@ -170,6 +170,7 @@ Additional features / TODO:
 	- Additonal hints for image lyric that is not displayed on the screen but used for AI image generation
 	- Sub-second (per frame) resolution
 	- Parameters into a file / program arguments
+	- Defect: credits disappear at end if there are short lyrics; see the (Help) lyrics in Post Malone "I Had Some Help"
 		
 
 
