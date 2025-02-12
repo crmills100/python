@@ -23,11 +23,11 @@ There are two components to the installation: 1. Stable Diffusion to generate im
 
 1. Install Stable Diffussion and AUTOMATIC1111 locally.
 	Instructions: https://github.com/AUTOMATIC1111/stable-diffusion-webui
-2. Configure the URL to webui.sd in config.json
-3. Configure paths in create_image_sequence.py
-    IMAGE_ROOT_PATH
-	IMAGE_TEMP_DIR
 
+2. Enable api mode:
+	Run webui with --api commandline argument, for example in your "webui-user.bat": set COMMANDLINE_ARGS=--api
+
+2. Launch sd.webui (on Windows run "run.bat")
 
 ## lyricvis:
 
@@ -55,6 +55,12 @@ The instructions below have been tested on a Windows 11 host using Python 3.13.0
 
 	Run the following to verify install of ImageMagick:
 		python .\create_image_test.py
+
+6. Configure the URL to the AUTOMATIC1111 URL in config.json
+
+7. Configure paths in create_image_sequence.py
+    IMAGE_ROOT_PATH
+	IMAGE_TEMP_DIR
 
 
 # Running:
