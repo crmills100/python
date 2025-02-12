@@ -22,6 +22,7 @@ There are two components to the installation: 1. Stable Diffusion to generate im
 ## Stable Diffusion:
 
 1. Install Stable Diffussion and AUTOMATIC1111 locally.
+	Instructions: https://github.com/AUTOMATIC1111/stable-diffusion-webui
 2. Configure the URL to webui.sd in config.json
 3. Configure paths in create_image_sequence.py
     IMAGE_ROOT_PATH
