@@ -71,8 +71,8 @@ The instructions below have been tested on a Windows 11 host using Python 3.13.0
 
 	Configuration in webui/webui-user.bat (IP address)
 		Noteable options: 
-			set COMMANDLINE_ARGS=--lowram --api --server-name=192.168.1.13
-			set CUDA_VISIBLE_DEVICES=0
+			set COMMANDLINE_ARGS=--lowram --api --server-name={ip_address}
+			set CUDA_VISIBLE_DEVICES=0  # index(es) of sepecific GPUs
 
 	Configuration options in webui/modules/cmd_args.py
 
