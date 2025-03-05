@@ -10,7 +10,7 @@ size = SIZE_VGA
 prompt = "A computer bored with computation"
 is_new_lyric = True
 text = " "
-title = "NOT USED"
+title = None
 fontsize = FONTSIZE
 path = "out.png"
 temp_dir = tempfile.gettempdir()
@@ -19,6 +19,7 @@ color = "#76B900"
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--prompt", help="prompt for AI to generate image")
+parser.add_argument("--title", help="title to show for the image (defaults to prompt)")
 parser.add_argument("--text", help="text to overlay onto the image")
 parser.add_argument("--path", help="path of the image to generate, defaults to out.png")
 parser.add_argument("--temp_dir", help="path of the image to generate, defaults to system temp directory")
@@ -29,6 +30,10 @@ args = parser.parse_args()
 
 if (args.prompt):
     prompt = args.prompt
+
+if (args.title):
+    title = args.title
+    title = title.replace("\\n", "\n")
 
 if (args.text):
     text = args.text

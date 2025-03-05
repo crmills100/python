@@ -56,7 +56,7 @@ def create_image(size, prompt, is_new_lyric, text, title, fontsize, path, temp_d
 
    # add any additional title
     if (title != None):
-        additional_clip = TextClip(title, fontsize=(fontsize - 2), color="blue", method='label', size=size)
+        additional_clip = TextClip(title, fontsize=(fontsize - 2), color="#9616CC", method='label', size=size)
         y_position = 30
         additional_clip = additional_clip.set_position((x_position, y_position))
         components.append(additional_clip)
