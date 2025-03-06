@@ -1,0 +1,209 @@
+{
+    "song_title": "I Had Some Help",
+    "artist": "Post Malone (feat. Morgan Wallen)",
+    "length": "00:02:58",
+    "audio": "I Had Some Help.mp3",
+    "lyrics_url": "TODO: https://genius.com/Everlast-what-its-like-lyrics",
+    "cover_graphic": "promo_45.png",
+    "titles": [
+        "Bebe Coin and Power Presents",
+        "A Generative AI Music Experience",
+        "Stable Diffusion text-to-image translation",
+        "LyricVis"
+    ],
+    "lyrics": [
+        {
+            "timestamp": "00:00:15",
+            "lyric": "You got a lotta nerve, don't you, baby?"
+        },
+        {
+            "timestamp": "00:00:19",
+            "lyric": "I only hit the curb 'cause you made me"
+        },
+        {
+            "timestamp": "00:00:23",
+            "lyric": "You're tellin' all your friends that I'm crazy"
+        },
+        {
+            "timestamp": "00:00:28",
+            "lyric": "Like I'm the only one"
+        },
+        {
+            "timestamp": "00:00:31",
+            "lyric": "Why'd you throw them stones, if you"
+        },
+        {
+            "timestamp": "00:00:34",
+            "lyric": "Had a wild hair of your own or two?"
+        }, 
+        {
+            "timestamp": "00:00:38",
+            "lyric": "Livin' in your big glass house with a view"
+        },
+        {
+            "timestamp": "00:00:42",
+            "lyric": "I thought you knew"
+        },
+        {
+            "timestamp": "00:00:44",
+            "lyric": "I had some help"
+        },
+        {
+            "timestamp": "00:00:46",
+            "lyric": "It ain't like I can make this kinda mess all by myself"
+        },
+        {
+            "timestamp": "00:00:50",
+            "lyric": "Don't act like you ain't help me pull that bottle off the shelf"
+        },
+        {
+            "timestamp": "00:00:53",
+            "lyric": "Been deep in every weekend if you couldn't tell"
+        },
+        {
+            "timestamp": "00:00:57",
+            "lyric": "They say teamwork makes the dream work"
+        },
+        {
+            "timestamp": "00:00:59",
+            "lyric": "Hell, I had some help (help)"
+        },
+        {
+            "timestamp": "00:01:04",
+            "lyric": "(Help)"
+        },
+        {
+            "timestamp": "00:01:07",
+            "lyric": "You thought I'd take the blame for us a-crumblin'"
+        },
+        {
+            "timestamp": "00:01:12",
+            "lyric": "Go 'round like you ain't guilty of somethin'"
+        },
+        {
+            "timestamp": "00:01:16",
+            "lyric": "Already lost the game that you been runnin'"
+        },
+        {
+            "timestamp": "00:01:20",
+            "lyric": "Guess it's catchin' up to you, huh"
+        },
+        {
+            "timestamp": "00:01:23",
+            "lyric": "You think that you're so innocent"
+        },
+        {
+            "timestamp": "00:01:27",
+            "lyric": "After all the shit you did"
+        },
+        {
+            "timestamp": "00:01:31",
+            "lyric": "I ain't an angel, you ain't heaven-sent"
+        },
+        {
+            "timestamp": "00:01:35",
+            "lyric": "Can't wash our hands of this"
+        },
+        {
+            "timestamp": "00:01:37",
+            "lyric": "I had some help"
+        },
+        {
+            "timestamp": "00:01:39",
+            "lyric": "It ain't like I can make this kinda mess all by myself"
+        },
+        {
+            "timestamp": "00:01:42",
+            "lyric": "Don't act like you ain't help me pull that bottle off the shelf"
+        },
+        {
+            "timestamp": "00:01:46",
+            "lyric": "Been deep in every weekend if you couldn't tell"
+        },
+        {
+            "timestamp": "00:01:50",
+            "lyric": "They say, \"Teamwork makes the dream work\""
+        },
+        {
+            "timestamp": "00:01:52",
+            "lyric": "Hell, I had some help (help)"
+        },
+        {
+            "timestamp": "00:01:57",
+            "lyric": "(Help)"
+        },
+        {
+            "timestamp": "00:02:01",
+            "lyric": "(Help)"
+        },
+        {
+            "timestamp": "00:02:05",
+            "lyric": "(Help)"
+        },
+        {
+            "timestamp": "00:02:07",
+            "lyric": "It takes two to break a heart in two, ooh"
+        },
+        {
+            "timestamp": "00:02:14",
+            "lyric": "Baby, you blame me and, baby, I blame you"
+        },
+        {
+            "timestamp": "00:02:19",
+            "lyric": "Aw, if that ain't truth (oh)"
+        },
+        {
+            "timestamp": "00:02:22",
+            "lyric": "I had some help"
+        },
+        {
+            "timestamp": "00:02:23",
+            "lyric": "It ain't like I can make this kinda mess all by myself"
+        },
+        {
+            "timestamp": "00:02:27",
+            "lyric": "Don't act like you ain't help me pull that bottle off the shelf"
+        },
+        {
+            "timestamp": "00:02:31",
+            "lyric": "Been deep in every weekend if you couldn't tell"
+        },
+        {
+            "timestamp": "00:02:34",
+            "lyric": "They say teamwork makes the dream work"
+        },
+        {
+            "timestamp": "00:02:36",
+            "lyric": "Hell, I had some help (help)"
+        },
+        {
+            "timestamp": "00:02:42",
+            "lyric": "(Help)"
+        },
+        {
+            "timestamp": "00:02:45",
+            "lyric": "(Help)"
+        },
+        {
+            "timestamp": "00:02:49",
+            "lyric": "(Help)"
+        }
+    ],
+    "credits": [
+        {
+            "Directed By": "Christopher Mills"
+        },
+        {
+            "Songwriters": "Ashley Glenn Gorley, Louis Russell Bell, Ryan Vojtesak, \nAustin Richard Post, Morgan Wallen, Ernest Keith Smith, \nJonathan Hoskins, Chandler Paul Walters."
+        },
+        {
+            "Visual Effects": "LyricVis powered by Stable Diffusion"
+        },
+        {
+            "Hardware": "Bebe Coin and Power Tower w/ NVIDIA RTX 3060"
+        },
+        {
+            "": "Copyright @ 2025 Christopher Mills"
+        }
+    ]
+}

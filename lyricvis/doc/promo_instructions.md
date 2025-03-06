@@ -1,4 +1,26 @@
-How was the promotion video created?
+# How to create a lyricvis video
+
+Process to create a new video:
+
+1. Identify and download song
+
+2. Create and upload a video to verify copyright
+
+3. Download lyrics
+
+4. Create song file with lyrics and timestamps, iterate on timing
+
+5. Create title graphic
+
+    Example: 
+     python .\create_image_cmd.py --prompt 'a clock showing boy 11 minutes away from a train station' --title='\"11 Minutes\"\nYUNGBLUD, Halsey' --text='A Generative AI Music Video'
+
+6. Generate video
+
+7. Upload
+
+
+# How was the promotion video created?
 
 Requirement: create 45 second promo clip
 

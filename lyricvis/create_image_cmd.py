@@ -1,15 +1,53 @@
 import create_image_sd
+import argparse
+import tempfile
+
 
 SIZE_VGA = (640, 480)
 FONTSIZE=30
-IMAGE_ROOT_PATH = "C:\\temp\\lyric_vis\\temp\\"
 
-create_image_sd.create_image(
-    SIZE_VGA, 
-    "\"Lost My Mind\"\nChristopher Mills", 
-    True, 
-    "A Generative AI Music Video", 
-    FONTSIZE, 
-    IMAGE_ROOT_PATH + "promo_45.png", 
-    IMAGE_ROOT_PATH, 
-    "#76B900")
+size = SIZE_VGA
+prompt = "A computer bored with computation"
+is_new_lyric = True
+text = " "
+title = None
+fontsize = FONTSIZE
+path = "out.png"
+temp_dir = tempfile.gettempdir()
+color = "#76B900"
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--prompt", help="prompt for AI to generate image")
+parser.add_argument("--title", help="title to show for the image (defaults to prompt)")
+parser.add_argument("--text", help="text to overlay onto the image")
+parser.add_argument("--path", help="path of the image to generate, defaults to out.png")
+parser.add_argument("--temp_dir", help="path of the image to generate, defaults to system temp directory")
+parser.add_argument("--color", help="color represented in hex string: #RRGGBB or name of color (ex 'red')")
+
+
+args = parser.parse_args()
+
+if (args.prompt):
+    prompt = args.prompt
+
+if (args.title):
+    title = args.title
+    title = title.replace("\\n", "\n")
+
+if (args.text):
+    text = args.text
+
+if (args.path):
+    path = args.path
+
+if (args.temp_dir):
+    temp_dir = args.temp_dir
+
+if (args.color):
+    color = args.color
+
+
+print(f"generating image: {size}, {prompt}, {is_new_lyric}, {text}, {title}, {fontsize}, {path}, {temp_dir}, {color}")
+
+create_image_sd.create_image(size, prompt, is_new_lyric, text, title, fontsize, path, temp_dir, color)
