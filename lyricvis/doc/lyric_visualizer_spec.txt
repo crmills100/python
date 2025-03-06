@@ -10,16 +10,6 @@ Assumptions: assume 1080p (1920x1080)
 Repository:
     https://github.com/crmills100/python/tree/main/lyricvis
 	
-
-
-Creating a Video:
-	- Download song + lyrics
-	- Create quick video to check copyright on Youtube
-	- Create timeline with lyrics
-	- Generate
-
-
-
 Resources:
 
 1. Basic python to make a video with images
