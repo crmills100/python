@@ -12,6 +12,13 @@ Repository:
 	
 
 
+Creating a Video:
+	- Download song + lyrics
+	- Create quick video to check copyright on Youtube
+	- Create timeline with lyrics
+	- Generate
+
+
 
 Resources:
 
