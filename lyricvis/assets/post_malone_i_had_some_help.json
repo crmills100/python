@@ -4,7 +4,7 @@
     "length": "00:02:58",
     "audio": "I Had Some Help.mp3",
     "lyrics_url": "TODO: https://genius.com/Everlast-what-its-like-lyrics",
-    "cover_graphic": "promo_45.png",
+    "cover_graphic": "post_malone_i_had_some_help.png",
     "titles": [
         "Bebe Coin and Power Presents",
         "A Generative AI Music Experience",
@@ -14,7 +14,8 @@
     "lyrics": [
         {
             "timestamp": "00:00:15",
-            "lyric": "You got a lotta nerve, don't you, baby?"
+            "lyric": "You got a lotta nerve, don't you, baby?",
+            "prompt": "a girl holding a bag of brains"
         },
         {
             "timestamp": "00:00:19",
@@ -22,11 +23,13 @@
         },
         {
             "timestamp": "00:00:23",
-            "lyric": "You're tellin' all your friends that I'm crazy"
+            "lyric": "You're tellin' all your friends that I'm crazy",
+            "prompt": "a woman whispering to a another woman on the phone"
         },
         {
             "timestamp": "00:00:28",
-            "lyric": "Like I'm the only one"
+            "lyric": "Like I'm the only one",
+            "prompt": "a man holding a valentine card crying"
         },
         {
             "timestamp": "00:00:31",
@@ -42,7 +45,8 @@
         },
         {
             "timestamp": "00:00:42",
-            "lyric": "I thought you knew"
+            "lyric": "I thought you knew",
+            "prompt": "a woman in a school teacher outfit"
         },
         {
             "timestamp": "00:00:44",
@@ -66,7 +70,8 @@
         },
         {
             "timestamp": "00:00:59",
-            "lyric": "Hell, I had some help (help)"
+            "lyric": "Hell, I had some help (help)",
+            "prompt": "a man and a woman ploting revenge"
         },
         {
             "timestamp": "00:01:04",
@@ -74,11 +79,13 @@
         },
         {
             "timestamp": "00:01:07",
-            "lyric": "You thought I'd take the blame for us a-crumblin'"
+            "lyric": "You thought I'd take the blame for us a-crumblin'",
+            "prompt": "a building crumbling with a black car outside"
         },
         {
             "timestamp": "00:01:12",
-            "lyric": "Go 'round like you ain't guilty of somethin'"
+            "lyric": "Go 'round like you ain't guilty of somethin'",
+            "prompt": "a woman stares with a guilty expression into a mirror"
         },
         {
             "timestamp": "00:01:16",
@@ -94,7 +101,8 @@
         },
         {
             "timestamp": "00:01:27",
-            "lyric": "After all the shit you did"
+            "lyric": "After all the shit you did",
+            "prompt": "a woman leaving a house with a stolen plant"
         },
         {
             "timestamp": "00:01:31",
@@ -118,7 +126,8 @@
         },
         {
             "timestamp": "00:01:46",
-            "lyric": "Been deep in every weekend if you couldn't tell"
+            "lyric": "Been deep in every weekend if you couldn't tell",
+            "prompt": "men at a fishing party drinking bourbon"
         },
         {
             "timestamp": "00:01:50",
@@ -126,7 +135,8 @@
         },
         {
             "timestamp": "00:01:52",
-            "lyric": "Hell, I had some help (help)"
+            "lyric": "Hell, I had some help (help)",
+            "prompt": "man and woman purchasing a gun in an alley"
         },
         {
             "timestamp": "00:01:57",

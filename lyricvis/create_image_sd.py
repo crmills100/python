@@ -27,24 +27,31 @@ def create_image(size, prompt, is_new_lyric, text, title, fontsize, path, temp_d
 
     input_image = ImageClip(path)
 
+
+    components = [input_image]
+
     # if the title is not provided, use the prompt as the title
-    if (title is None):
-        title = prompt
+#    if (title is None):
+#        title = prompt
 
-    # Create a TextClip with the provided text
-    text_clip = TextClip(title, fontsize=fontsize, color=color, method='label', size=size)
+    x_position = 0
+ 
+    if (title != None):    
+        # Create a TextClip with the provided text
+        text_clip = TextClip(title, fontsize=fontsize, color=color, method='label', size=size)
 
-    #border_size = 3
-    border_clip = TextClip(title, fontsize=fontsize, color='black', method='label', size=size)
+        #border_size = 3
+        border_clip = TextClip(title, fontsize=fontsize, color='black', method='label', size=size)
     
-    x_position = (input_image.w - text_clip.w) // 2 
-    y_position = ((input_image.h - text_clip.h) // 2) + (input_image.h // 4)
+        x_position = (input_image.w - text_clip.w) // 2 
+        y_position = ((input_image.h - text_clip.h) // 2) + (input_image.h // 4)
 
-    text_clip = text_clip.set_position((x_position, y_position))
-    border_clip = border_clip.set_position((x_position-1, y_position-1))
-    components = [input_image, border_clip, text_clip];
-
+        text_clip = text_clip.set_position((x_position, y_position))
+        border_clip = border_clip.set_position((x_position-1, y_position-1))
     
+        components.append(border_clip)
+        components.append(text_clip)
+
 
     # add any additional text
     if (text != None):

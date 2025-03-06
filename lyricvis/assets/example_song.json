@@ -12,7 +12,8 @@
     },
     {
       "timestamp": "00:00:10",
-      "lyric": "Two words"
+      "lyric": "Two words",
+      "prompt": "A man wearing a red jacket with sunglasses"
     },
     {
       "timestamp": "00:00:15",
