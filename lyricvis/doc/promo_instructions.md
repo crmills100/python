@@ -13,7 +13,7 @@ Process to create a new video:
 5. Create title graphic
 
     Example: 
-     python .\create_image_cmd.py --prompt 'a clock showing boy 11 minutes away from a train station' --title='\"11 Minutes\"\nYUNGBLUD, Halsey' --text='A Generative AI Music Video'
+     python .\create_image_cmd.py --prompt 'a clock showing boy 11 minutes away from a train station' --title='\"11 Minutes\"\nYUNGBLUD, Halsey' --text='A Generative AI Music Video' --color=#6CD3EF
 
 6. Generate video
 
