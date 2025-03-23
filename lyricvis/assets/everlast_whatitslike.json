@@ -27,31 +27,38 @@
     },
     {
       "timestamp": "00:00:40",
-      "lyric": "But, \"Get a job, you fuckin' slob!\" is all he replied"
+      "lyric": "But, \"Get a job, you fuckin' slob!\" is all he replied",
+      "prompt": "a man yelling at another man beside a factory"
     },
     {
       "timestamp": "00:00:46",
-      "lyric": "Well, God forbid you ever had to walk a mile in his shoes"
+      "lyric": "Well, God forbid you ever had to walk a mile in his shoes",
+      "prompt": "a old pair of shoes"
     },
     {
       "timestamp": "00:00:51",
-      "lyric": "'Cause then you really might know what it's like to sing the blues"
+      "lyric": "'Cause then you really might know what it's like to sing the blues",
+      "prompt": "an old man singing the blues"
     },
     {
       "timestamp": "00:00:58",
-      "lyric": "Then you really might know what it's like (what it's like)"
+      "lyric": "Then you really might know what it's like (what it's like)",
+      "prompt": "a man with a pencil paying a late bill"
     },
     {
       "timestamp": "00:01:03",
-      "lyric": " Then you really might know what it's like (what it's like) "
+      "lyric": " Then you really might know what it's like (what it's like) ",
+      "prompt": "a man struggling to pay his apartment rent"
     },
     {
       "timestamp": "00:01:08",
-      "lyric": "Then you really might know what it's like (what it's like)"
+      "lyric": "Then you really might know what it's like (what it's like)",
+      "prompt": "a man searching for money in his pockets to buy food"
     },
     {
       "timestamp": "00:01:15",
-      "lyric": " Then you really might know what it's like (what it's like) "
+      "lyric": " Then you really might know what it's like (what it's like) ",
+      "prompt": "a man crying standing over his baby"
     },
     {
       "timestamp": "00:01:20",
@@ -63,11 +70,13 @@
     },
     {
       "timestamp": "00:01:31",
-      "lyric": "But three months later he said he won't date her or return her calls"
+      "lyric": "But three months later he said he won't date her or return her calls",
+      "prompt": "a man at a dance club looking for a new woman to date"
     },
     {
       "timestamp": "00:01:36",
-      "lyric": "And she sweared, \"Goddamn, If I find that man I'm cuttin' off his balls!\""
+      "lyric": "And she sweared, \"Goddamn, If I find that man I'm cuttin' off his balls!\"",
+      "prompt": "a woman threating a man with a knife"
     },
     {
       "timestamp": "00:01:42",
@@ -83,31 +92,38 @@
     },
     {
       "timestamp": "00:01:59",
-      "lyric": "Cause then you really might know what it's like to have to choose"
+      "lyric": "Cause then you really might know what it's like to have to choose",
+      "prompt": "a woman searching for money in his pockets to buy food"
     },
     {
       "timestamp": "00:02:05",
-      "lyric": "Then you really might know what it's like (what it's like)"
+      "lyric": "Then you really might know what it's like (what it's like)",
+      "prompt":"a woman struggling to pay his apartment rent"
     },
     {
       "timestamp": "00:02:11",
-      "lyric": " Then you really might know what it's like (what it's like) "
+      "lyric": " Then you really might know what it's like (what it's like)",
+      "prompt": "a man yelling at a woman beside a factory"
     },
     {
       "timestamp": "00:02:17",
-      "lyric": "Then you really might know what it's like (what it's like)"
+      "lyric": "Then you really might know what it's like (what it's like)",
+      "prompt": "a women crying standing over her baby"
     },
     {
       "timestamp": "00:02:22",
-      "lyric": " Then you really might know what it's like (what it's like) "
+      "lyric": " Then you really might know what it's like (what it's like)",
+      "prompt": "a man with a pencil paying a late bill"
     },
     {
       "timestamp": "00:02:27",
-      "lyric": "I've seen a rich man beg"
+      "lyric": "I've seen a rich man beg",
+      "prompt": "a rich man begging his friends for money"
     },
     {
       "timestamp": "00:02:29",
-      "lyric": "I've seen a good man sin"
+      "lyric": "I've seen a good man sin",
+      "prompt": "a good man stealing from his church"
     },
     {
       "timestamp": "00:02:30",
@@ -115,7 +131,8 @@
     },
     {
       "timestamp": "00:02:33",
-      "lyric": "I've seen a loser win"
+      "lyric": "I've seen a loser win",
+      "prompt": "a man betting all of his money at a roulette game"
     },
     {
       "timestamp": "00:02:35",
@@ -123,15 +140,18 @@
     },
     {
       "timestamp": "00:02:36",
-      "lyric": "I heard an honest man lie"
+      "lyric": "I heard an honest man lie",
+      "prompt": "a man lying to friend about how the car was crashed"
     },
     {
       "timestamp": "00:02:38",
-      "lyric": "I've seen the good side of bad and the down side of up"
+      "lyric": "I've seen the good side of bad and the down side of up",
+      "prompt": "a crossroads where each direction leads down a strange path"
     },
     {
       "timestamp": "00:02:42",
-      "lyric": "And everything between"
+      "lyric": "And everything between",
+      "prompt": "a crossroads where each direction leads down a strange path"
     },
     {
       "timestamp": "00:02:44",
@@ -143,27 +163,23 @@
     },
     {
       "timestamp": "00:02:50",
-      "lyric": "I stroked the baddest dimes"
-    },
-    {
-      "timestamp": "00:02:52",
-      "lyric": "At least a couple of times"
+      "lyric": "I stroked the baddest dimes. At least a couple of times.",
+      "prompt": "I stroked the baddest dimes"
     },
     {
       "timestamp": "00:02:53",
-      "lyric": "Before I broke their heart"
+      "lyric": "Before I broke their heart",
+      "prompt": "a bad boy breaking a girl's heart"
     },
     {
       "timestamp": "00:02:56",
-      "lyric": "You know where it ends"
+      "lyric": "You know where it ends. Yo, it usually depends.",
+      "prompt": "tring to find the end of a long tangled rope"
     },
     {
-      "timestamp": "00:02:57",
-      "lyric": "Yo, it usually depends"
-    },
-    {
-      "timestamp": "00:02:58",
-      "lyric": "On where you start"
+      "timestamp": "00:02:59",
+      "lyric": "On where you start",
+      "prompt": "a map showing a good part and bad part of a city"
     },
     {
       "timestamp": "00:03:12",
@@ -187,31 +203,38 @@
     },
     {
       "timestamp": "00:03:41",
-      "lyric": "You know it comes that way, \nat least that's what they say when you play the game"
+      "lyric": "You know it comes that way, \nat least that's what they say when you play the game",
+      "prompt": "a man in pain lost in pain trying to play monopoly"
     },
     {
       "timestamp": "00:03:46",
-      "lyric": "God forbid you ever had to wake up to hear the news"
+      "lyric": "God forbid you ever had to wake up to hear the news",
+      "prompt": "a phone ringing while a lady sleeps in her bed"
     },
     {
       "timestamp": "00:03:52",
-      "lyric": "Cause then you really might know what it's like to have to lose"
+      "lyric": "Cause then you really might know what it's like to have to lose",
+      "prompt": "a picture of a man dealing cards to a loser"
     },
     {
       "timestamp": "00:03:58",
-      "lyric": "Then you really might know what it's like (what it's like)"
+      "lyric": "Then you really might know what it's like (what it's like)",
+      "prompt":"I am crying standing over my baby"
     },
     {
       "timestamp": "00:04:03",
-      "lyric": " Then you really might know what it's like (what it's like) "
+      "lyric": " Then you really might know what it's like (what it's like) ",
+      "prompt": "I am struggling to pay my apartment rent"
     },
     {
       "timestamp": "00:04:08",
-      "lyric": "Then you really might know what it's like (what it's like)"
+      "lyric": "Then you really might know what it's like (what it's like)",
+      "prompt": "I am struggling holding a pencil paying a late bill"
     },
     {
       "timestamp": "00:04:13",
-      "lyric": "To have to lose..."
+      "lyric": "To have to lose...",
+      "prompt": "a man stands on a loney city street with a briefcase in his hand"
     }
   ],
     
