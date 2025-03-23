@@ -34,6 +34,8 @@ if (args.prompt):
 if (args.title):
     title = args.title
     title = title.replace("\\n", "\n")
+    title = title.replace("\\\"", "\"")
+    
 
 if (args.text):
     text = args.text
