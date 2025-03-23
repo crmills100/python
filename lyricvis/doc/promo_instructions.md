@@ -8,14 +8,14 @@ Process to create a new video:
 
 3. Download lyrics
 
-4. Create song file with lyrics and timestamps, iterate on timing
+4. Create song file with lyrics and timestamps, iterate on timing in text mode
 
 5. Create title graphic
 
-    Example: 
-     python .\create_image_cmd.py --prompt 'a clock showing boy 11 minutes away from a train station' --title='\"11 Minutes\"\nYUNGBLUD, Halsey' --text='A Generative AI Music Video' --color=#6CD3EF
+    Example (cmd): 
+    python .\create_image_cmd.py --prompt "a man looking down an empty road crying while his friend walks away" --title "\"What It's Like\"\nEverlast" --text "A Generative AI Music Video" --color #6CD3EF
 
-6. Generate video
+6. Generate video, add and adjust prompts as needed
 
 7. Upload
 
