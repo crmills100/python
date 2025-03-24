@@ -2,6 +2,8 @@ from song import Song
 import create_image
 import create_image_sd
 import os
+import argparse
+
 
 SIZE_VGA = (640, 480)
 SIZE_720 = (1280, 720)
@@ -10,19 +12,35 @@ FONTSIZE=20
 IMAGE_ROOT_PATH = "C:\\temp\\lyric_vis\\"
 IMAGE_TEMP_DIR = "C:\\temp\\lyric_vis\\temp\\"
 BLANK_IMAGE_PATH = IMAGE_TEMP_DIR + "blank_640x480.png"
-#TARGET_VIDEO_PATH = "C:\\temp\\example.mp4"
-TARGET_VIDEO_PATH = "C:\\temp\\post_malone_i_had_some_help.mp4"
-MODE_VIDEO = 'Image' # 'Text' or 'Image'
+
 GEN_IMAGES = True
 
 FPS = 30
 SECS_PER_WORD = 2
 MAX_FRAMES = 100000
 
-#song_file_path = 'assets/example_song.json'
-#song_file_path = 'assets/everlast_whatitslike.json'
-song_file_path = 'assets/post_malone_i_had_some_help.json'
-#song_file_path = 'assets/halsey_11_minutes.json'
+
+SONG_FILE_PATH = ""
+TARGET_VIDEO_PATH = ""
+MODE_VIDEO = 'Text' # 'Text' or 'Image'
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--song_file", help="path to JSON file with metadata and lyrics", required=True)
+parser.add_argument("--path", help="filename path to save generated video file to", required=True)
+parser.add_argument("--mode", help="'text' or 'image' mode")
+
+args = parser.parse_args()
+
+
+if (args.song_file):
+    song_file_path = args.song_file
+
+if (args.path):
+    TARGET_VIDEO_PATH = args.path
+
+if (args.mode):
+    TARGET_VIDEO_PATH = "Image" if args.mode.lower() == "image" "Image" else "Text"
+
 
 
 class FrameInfo:
