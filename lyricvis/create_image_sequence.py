@@ -113,6 +113,7 @@ def add_credit(frame_info, credit, frame_number, count):
             else:
                 frame.text = key + ": " + value
 
+
 def add_cover_frames(frame_info, frame_number, count, song, song_file_path):
     print(f"add_cover_frames: {frame_number}, {count}, {song_file_path}")
     graphic_path = song.get_cover_graphic_path(song_file_path)
@@ -150,20 +151,15 @@ def create_image_sequence(frame_info):
     print(f"create_image_sequence generated {generated_frame_count} frames vs {len(frame_info)}")
 
 
-
-    
-
 def generate_blank2(frame_number, count, text, title):
     print(f"generate_blank2: {frame_number}, {count}, {text}, {title}")
 
     if (GEN_IMAGES):
         orig_path = BLANK_IMAGE_PATH
-        if (title != None):
+        if ((title != None) or (text != None)):
             path = IMAGE_TEMP_DIR + "blank_w_text.png"
             create_image.create_image3(SIZE_VIDEO, text, title, FONTSIZE, path)
             orig_path = path
-
-        # TODO: currently ignoring blank text frames, determine if this should be changed
 
         for x in range(0, count + 1):
             copy_path = IMAGE_ROOT_PATH + format_number(frame_number + x) + ".png"
@@ -179,9 +175,6 @@ def generate2(frame_number, count, prompt, is_new_lyric, text, title, graphic_pa
             copy_path = IMAGE_ROOT_PATH + format_number(frame_number + x) + ".png"
             create_image.copy_file(graphic_path, copy_path)
         return
-
- #TODO DEL   if (prompt is None):
- #       prompt = title
 
     if (prompt is None):
         generate_blank2(frame_number, count, text, title)
