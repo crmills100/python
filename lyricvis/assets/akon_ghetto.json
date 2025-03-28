@@ -13,11 +13,6 @@
 
   "lyrics": [
     {
-      "timestamp": "00:00:09",
-      "lyric": "(Oh oh oh)",
-      "prompt": "a overhead shot of the projects"
-    },
-    {
       "timestamp": "00:00:12",
       "lyric": "(Oh oh oh)",
       "prompt": "a overhead shot of the projects"
@@ -25,12 +20,12 @@
     {
       "timestamp": "00:00:14",
       "lyric": "(Oh oh oh)",
-      "prompt": "a overhead shot of the projects"
+      "prompt": "a overhead shot of the projects with a helicopter"
     },
     {
       "timestamp": "00:00:17",
       "lyric": "(Oh oh oh)",
-      "prompt": "a overhead shot of the projects"
+      "prompt": "a overhead shot of the projects with a police car on the road"
     },
     {
       "timestamp": "00:00:21",
@@ -72,7 +67,7 @@
     {
       "timestamp": "00:00:51",
       "lyric": "On the corner with the toolie on the waist line",
-      "prompt": "A man with a 9mm gun tucked into his belt"
+      "prompt": "A man with a colt 45 gun tucked into his belt"
     },
     {
       "timestamp": "00:00:54",
@@ -107,10 +102,11 @@
     },
     {
       "timestamp": "00:01:12",
-      "lyric": "When you're livin' in the (ghetto)"
+      "lyric": "When you're livin' in the (ghetto)",
+      "prompt": "a man walking down the street in the ghetto"
     },
     {
-      "timestamp": "00:01:15",
+      "timestamp": "00:01:14",
       "lyric": "And eatin' in the (ghetto)"
     },
     {
@@ -132,7 +128,8 @@
     },
     {
       "timestamp": "00:01:33",
-      "lyric": "No need to cherish luxuries"
+      "lyric": "No need to cherish luxuries",
+      "prompt": "a lowrider car a summer BBQ"
     },
     {
       "timestamp": "00:01:36",
@@ -186,7 +183,8 @@
     },
     {
       "timestamp": "00:02:07",
-      "lyric": "A lot a niggas dead or locked away"
+      "lyric": "A lot a niggas dead or locked away",
+      "prompt": "a man in handcuffs being put into the back of a police car"
     },
     {
       "timestamp": "00:02:09",
@@ -195,11 +193,12 @@
     {
       "timestamp": "00:02:11",
       "lyric": "'Cause that's the life",
-      "prompt": "a crack pipe broken near the curb of a street"
+      "prompt": "a drug dealer driving a 1964 implala"
     },
     {
       "timestamp": "00:02:13",
-      "lyric": "When you're livin' in the (ghetto)"
+      "lyric": "When you're livin' in the (ghetto)",
+      "prompt": "a man drinking a 45 ounce bottle of malt liquor"
     },
     {
       "timestamp": "00:02:15",
@@ -235,7 +234,8 @@
     },
     {
       "timestamp": "00:02:41",
-      "lyric": "Oh oh oh oh oh (ghetto livin')"
+      "lyric": "Oh oh oh oh oh (ghetto livin')",
+      "prompt": "a prositute on a corner in front of a 1964 impala"
     },
     {
       "timestamp": "00:02:44",
@@ -267,7 +267,8 @@
     },
     {
       "timestamp": "00:03:03",
-      "lyric": "Ghetto, that's the life.\nWhen you're livin' in the (ghetto)"
+      "lyric": "Ghetto, that's the life.\nWhen you're livin' in the (ghetto)",
+      "prompt": "a man alseep on a bench with a bottle of wine"
     },
     {
       "timestamp": "00:03:07",
@@ -275,22 +276,27 @@
     },
     {
       "timestamp": "00:03:09",
-      "lyric": "Oh, livin' in the (ghetto)"
+      "lyric": "Oh, livin' in the (ghetto)",
+      "prompt": "two women in bikinis late at night on a street corner"
+    },
+    {
+      "timestamp": "00:03:14",
+      "lyric": "Ghetto livin' (Oh oh oh)"
     },
     {
       "timestamp": "00:03:24",
       "lyric": "(Oh oh oh)",
-      "prompt": "a overhead shot of the projects"
+      "prompt": "a man driving into the projects"
     },
     {
       "timestamp": "00:03:27",
       "lyric": "(Oh oh oh)",
-      "prompt": "a overhead shot of the projects"
+      "prompt": "a man buying drugs in the projects"
     },
     {
       "timestamp": "00:03:29",
       "lyric": "(Oh oh oh)",
-      "prompt": "a overhead shot of the projects"
+      "prompt": "a man talking to a prostitute in the projects"
     },
     {
       "timestamp": "00:03:31",
