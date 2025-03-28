@@ -39,7 +39,7 @@ if (args.path):
     TARGET_VIDEO_PATH = args.path
 
 if (args.mode):
-    TARGET_VIDEO_PATH = "Image" if args.mode.lower() == "image" "Image" else "Text"
+    MODE_VIDEO = "Image" if args.mode.lower() == "image" else "Text"
 
 
 
