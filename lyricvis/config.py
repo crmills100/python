@@ -20,4 +20,8 @@ class Config:
     def get_web_service_url(self):
         return self.config.get('web_service_url')
     
+    def get_imagemagick_binary(self):
+        return self.config.get('imagemagick_binary')
+
+    
     

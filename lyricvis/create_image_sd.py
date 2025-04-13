@@ -4,20 +4,19 @@ import io
 import base64
 import shutil
 
+from config import Config
+config = Config();
+
+
 from PIL import Image
 
 from moviepy.editor import *
 
 from moviepy.config import change_settings
-change_settings({"IMAGEMAGICK_BINARY": r"C:\\opt\\ImageMagick-7.1.1-Q16-HDRI\\magick.exe"})
 
-from config import Config
-
-
-config = Config();
+change_settings({"IMAGEMAGICK_BINARY": config.get_imagemagick_binary()})
 
 URL = config.get_web_service_url();
-
 
 def create_image(size, prompt, is_new_lyric, text, title, fontsize, path, temp_dir, color="white"):
     """ create an image of dimensions size(width, height)) based on the text prompt, write the image to the path

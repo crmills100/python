@@ -47,11 +47,14 @@ The instructions below have been tested on a Windows 11 host using Python 3.13.0
 	mkdir C:\temp\lyric_vis\temp
  	copy .\assets\blank_640x480.png C:\temp\lyric_vis\temp\
 
-5. Install ImageMagick: https://imagemagick.org/
-	Note: the path to the install is in create_image.py AND create_image_sd.py
+5. ImageMagick: https://imagemagick.org/
+
 	Note: ImageMagick 7.1.1 has been tested
 
-	Run the following to verify install of ImageMagick:
+	a. Download ImageMagick (this example assumes the installation file: ImageMagick-7.1.1-47-Q16-HDRI-x64-dll.exe)
+	b. Install ImageMagick
+	c. Edit config.json to include the path to mackick.exe
+	d. Run the following to verify install of ImageMagick:
 		python .\create_image_test.py
 
 6. Configure the URL to the AUTOMATIC1111 URL in config.json
