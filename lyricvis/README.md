@@ -97,7 +97,7 @@ The instructions below have been tested on a Windows 11 host using Python 3.13.0
 	Start the virtualenv:
 		pipenv shell
 	Run the generator:
-		python .\create_image_sequence.py
+		python create_image_sequence.py --song_file {JSON song file} --path {output MP4 filename}
 
 # Caveats
 
