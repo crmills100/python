@@ -34,8 +34,10 @@ The instructions below have been tested on a Windows 11 host using Python 3.13.0
 1. Install a virtual environment named "lvenv"
 	python -m venv lvenv
 
-2. Activate the virtual environment
-	.\lvenv\Scripts\Activate.ps1
+2. Activate the virtual environment:
+	.\lvenv\Scripts\Activate.bat (command prompt)
+	OR
+	.\lvenv\Scripts\Activate.ps1 (PowerShell)
 
 3. Install required packages:
 	pip install moviepy==1.0.3 
@@ -62,6 +64,10 @@ The instructions below have been tested on a Windows 11 host using Python 3.13.0
 7. Configure paths in create_image_sequence.py
     IMAGE_ROOT_PATH
 	IMAGE_TEMP_DIR
+
+8. Verify the connectivity between LyricVis and Stable Diffusion:
+		python .\create_image_test_sd.py
+
 
 
 # Running:
