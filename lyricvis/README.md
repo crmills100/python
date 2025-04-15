@@ -11,7 +11,7 @@ Input:
 	file with lyrics and timestamps
 	song file
 
-Assumptions: assume 1080p (1920x1080)
+Assumptions: assumes 480p (640x480) target resolution
 
 # Installation:
 
@@ -68,10 +68,7 @@ The instructions below have been tested on a Windows 11 host using Python 3.13.0
 8. Verify the connectivity between LyricVis and Stable Diffusion:
 		python .\create_image_test_sd.py
 
-
-
 # Running:
-
 
 1. Start AUTOMATIC1111:
 	C:\opt\sd.webui> .\run.bat
@@ -85,25 +82,18 @@ The instructions below have been tested on a Windows 11 host using Python 3.13.0
 
 2. Create assets that describe the video to create (see doc/promo_instructions.md)
 
-3. Configuration:
-
-    Parameters for execution:
-        TARGET_VIDEO_PATH - path of generated video
-        GEN_IMAGES - boolean (True or False) determines to regenerate images for each frame or not
-		VIDEO_MODE - 'Text' generate text frames from lyrics or 'Image' to use generative AI image generation
-
-
-4. Generate a video for a song on localhost:
+3. Generate a video for a song on localhost:
 	Start the virtualenv:
 		pipenv shell
 	Run the generator:
 		python create_image_sequence.py --song_file {JSON song file} --path {output MP4 filename}
 
+		See "python create_image_sequence.py -h" for details
+
 # Caveats
 
 I've only run this on a limited amount of hardware (client running on a Windows 10 host with Stable Diffusion running on a Windows 11 host with a RTX 30 series GPU). As a result, there are likely a few references
 to directories that may not exist and are certainly not platform agnostic. If you fix these please send a patch.
-
 
 # TODO:
 
