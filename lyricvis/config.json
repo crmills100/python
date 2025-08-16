@@ -1,4 +1,4 @@
 {
-  "web_service_url": "http://192.168.0.114:7860/sdapi/v1/txt2img",
+  "web_service_url": "http://192.168.0.115:7860/sdapi/v1/txt2img",
   "imagemagick_binary": "C:\\opt\\ImageMagick-7.1.1-Q16-HDRI\\magick.exe"
 }
