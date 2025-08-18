@@ -2,6 +2,9 @@
 
 LyricVis is all about pushing the boundaries of creativity – using Text-to-Image AI video generation based on song lyrics! Imagine turning lyrics into mesmerizing visuals, bringing the essence of music to life in a whole new way.
 
+Some example videos: https://www.youtube.com/@lyricvisual
+
+
 # Processing Overview:
 
 For each lyric phrase and time code, generate an image
