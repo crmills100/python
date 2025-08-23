@@ -4,7 +4,6 @@ import create_image_sd
 import os
 import argparse
 
-
 SIZE_VGA = (640, 480)
 SIZE_720 = (1280, 720)
 SIZE_VIDEO = SIZE_VGA
@@ -41,7 +40,10 @@ if (args.path):
 if (args.mode):
     MODE_VIDEO = "Image" if args.mode.lower() == "image" else "Text"
 
-
+# validate we can write to file
+f = open(TARGET_VIDEO_PATH, "w")
+f.write("0000")
+f.close()
 
 class FrameInfo:
     def __init__(self, num, prompt, text, title, graphic_path):

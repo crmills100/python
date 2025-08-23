@@ -14,79 +14,98 @@
     "lyrics": [
         {
             "timestamp": "00:00:16",
-            "lyric": "She told me that I'm not enough (Yeah)"
+            "lyric": "She told me that I'm not enough (Yeah)",
+            "prompt": "The wet pavement reflected a kaleidoscope of color—reds, blues, and sickly yellows blurring into streaks as the car sped through intersections."
         },
         {
             "timestamp": "00:00:23",
-            "lyric": "And she left me with a broken heart (Yeah)"
+            "lyric": "And she left me with a broken heart (Yeah)",
+            "prompt": "Rain glistened on the windshield, lit by neon signs and flickering streetlamps."
         },
         {
             "timestamp": "00:00:29",
-            "lyric": "She fooled me twice and it's all my fault (Yeah)"
+            "lyric": "She fooled me twice and it's all my fault (Yeah)",
+            "prompt": "Nico's car sliced through the city night like a wounded animal on the run."
         },
         {
             "timestamp": "00:00:36",
-            "lyric": "She cut too deep, now she left me scarred (Yeah)"
+            "lyric": "She cut too deep, now she left me scarred (Yeah)",
+            "prompt": "Inside, the dashboard cast a cold blue glow, highlighting Nico's tired eyes and the deep shadows under them."
         },
         {
             "timestamp": "00:00:43",
-            "lyric": "Now there's so many thoughts goin' through my brain (Yeah)"
+            "lyric": "Now there's so many thoughts goin' through my brain (Yeah)",
+            "prompt": "His reflection in the rearview mirror looked foreign: hair wild, cheeks sunken, eyes red."
         },
         {
             "timestamp": "00:00:49",
-            "lyric": "And now I'm takin' these shots like it's Novocaine, yeah"
+            "lyric": "And now I'm takin' these shots like it's Novocaine, yeah",
+            "prompt": "From inside the car, the city lights smeared across windshield like tears that refused to fall."
         }, 
         {
             "timestamp": "00:00:57",
-            "lyric": "Ooh, I fall apart"
+            "lyric": "Ooh, I fall apart",
+            "prompt": "A woman yelling at a man, a look of pity on the man's face."
         },
         {
-            "timestamp": "00:01:02",
-            "lyric": "Down to my core"
+            "timestamp": "00:01:01",
+            "lyric": "Down to my core",
+            "prompt": "Her eyes had already turned to glass, distant and unfamiliar."
         },
         {
             "timestamp": "00:01:04",
-            "lyric": "Ooh, I fall apart"
+            "lyric": "Ooh, I fall apart",
+            "prompt": "She had stood in front of him in the kitchen, sunlight pouring in through half-closed blinds."
         },
         {
             "timestamp": "00:01:08",
-            "lyric": "Down to my core"
+            "lyric": "Down to my core",
+            "prompt": "A girl outside of an apartment building on an empty street."
         },
         {
             "timestamp": "00:01:10",
-            "lyric": "Ooh, didn't know it before"
+            "lyric": "Ooh, didn't know it before",
+            "prompt": "He hadn't moved from the spot for hours, watching the light crawl across the floor like it was trying to follow her out."
         },
         {
             "timestamp": "00:01:14",
-            "lyric": "Surprised when you caught me off guard"
+            "lyric": "Surprised when you caught me off guard",
+            "prompt": "Gold around her neck, late-night drives to nowhere just to make her laugh."
         },
         {
             "timestamp": "00:01:18",
-            "lyric": "All this damn jewelry I bought"
+            "lyric": "All this damn jewelry I bought",
+            "prompt": "Jewelry that sparkled in candlelight, reservations with views of the whole damn skyline."
         },
         {
             "timestamp": "00:01:21",
-            "lyric": "You was my shorty, I thought"
+            "lyric": "You was my shorty, I thought",
+            "prompt": "Girlfriend in a short skirt with eyes had already turned to sadness."
         },
         {
             "timestamp": "00:01:24",
-            "lyric": "Never caught a feelin' this hard"
+            "lyric": "Never caught a feelin' this hard",
+            "prompt": "He looked like a ghost caught with jaw clenched, unshaven face worn tired."
         },
         {
             "timestamp": "00:01:28",
-            "lyric": "Harder than the liquor I pour"
+            "lyric": "Harder than the liquor I pour",
+            "prompt": "In the car back seat, a few unopened liquor bottles clinked together."
         },
         {
             "timestamp": "00:01:31",
-            "lyric": "Tell me you don't want me no more"
+            "lyric": "Tell me you don't want me no more",
+            "prompt": "Outside, raindrops danced down the windows like they were trying to wash away the ache inside."
         },
         {
             "timestamp": "00:01:35",
-            "lyric": "But I can't let go, everybody told me so"
+            "lyric": "But I can't let go, everybody told me so",
+            "prompt": "Pain lived in the the man's eyes, behind every blink."
         },
         {
             "timestamp": "00:01:41",
-            "lyric": "Feelin' like I sold my soul"
+            "lyric": "Feelin' like I sold my soul",
+            "prompt": "His reflection in the rearview mirror looked foreign: hair wild, cheeks sunken, eyes red."
         },
         {
             "timestamp": "00:01:44",
@@ -98,43 +117,54 @@
         },
         {
             "timestamp": "00:01:50",
-            "lyric": "You said it, no, you said it"
+            "lyric": "You said it, no, you said it",
+            "prompt": "Beneath his hoodie, beneath the skin, scar by scar, thought by thought."
         },
         {
             "timestamp": "00:01:56",
-            "lyric": "No, you said that shit, we'd be together, oh"
+            "lyric": "No, you said that shit, we'd be together, oh",
+            "prompt": "A heart torn from the chest of a man covered in scars.",
+            "prompt2": "Brakes at a red light, the car lurching to a stop in the middle of a crosswalk."
         },
         {
             "timestamp": "00:02:03",
-            "lyric": "Ooh, I fall apart"
+            "lyric": "Ooh, I fall apart",
+            "prompt": "A woman yelling at a man, a look of pity on the man's face."
         },
         {
             "timestamp": "00:02:08",
-            "lyric": "Down to my core"
+            "lyric": "Down to my core",
+            "prompt": "Her eyes had already turned to glass, distant and unfamiliar."
         },
         {
             "timestamp": "00:02:10",
-            "lyric": "Ooh, I fall apart"
+            "lyric": "Ooh, I fall apart",
+            "prompt": "She stood in front of him in the kitchen, sunlight pouring in through half-closed blinds."
         },
         {
             "timestamp": "00:02:14",
-            "lyric": "Down to my core"
+            "lyric": "Down to my core",
+            "prompt": "A girl outside of an apartment building on an empty street."
         },
         {
             "timestamp": "00:02:17",
-            "lyric": "Ooh, didn't know it before"
+            "lyric": "Ooh, didn't know it before",
+            "prompt": "He hadn't moved from the spot for hours, watching the light crawl across the floor like it was trying to follow her out."
         },
         {
             "timestamp": "00:02:21",
-            "lyric": "Surprised when you caught me off guard"
+            "lyric": "Surprised when you caught me off guard",
+            "prompt": "He had tried, gold around her neck, late-night drives to nowhere just to make her laugh."
         },
         {
             "timestamp": "00:02:24",
-            "lyric": "All this damn jewelry I bought"
+            "lyric": "All this damn jewelry I bought",
+            "prompt": "Jewelry that sparkled in candlelight, reservations with views of the whole damn skyline."
         },
         {
             "timestamp": "00:02:28",
-            "lyric": "You was my shorty, I thought"
+            "lyric": "You was my shorty, I thought",
+            "prompt": "Girlfriend in a short skirt with eyes had already turned to sadness."
         },
         {
             "timestamp": "00:02:30",
@@ -142,7 +172,8 @@
         },
         {
             "timestamp": "00:02:34",
-            "lyric": "Try to brush it off, but it keep on goin'"
+            "lyric": "Try to brush it off, but it keep on goin'",
+            "prompt": "Her head against his chest, eyes half-closed as she whispered promises about always."
         },
         {
             "timestamp": "00:02:37",
@@ -150,7 +181,8 @@
         },
         {
             "timestamp": "00:02:40",
-            "lyric": "Whippin' in the foreign and the tears keep rollin'"
+            "lyric": "Whippin' in the foreign and the tears keep rollin'",
+            "prompt": "An exotic car driving quickly in the rain."
         },
         {
             "timestamp": "00:02:44",
@@ -158,7 +190,8 @@
         },
         {
             "timestamp": "00:02:47",
-            "lyric": "Try to brush it off, but it keep on goin'"
+            "lyric": "Try to brush it off, but it keep on goin'",
+            "prompt": "Now, the passenger seat sat empty, holding only silence and the ghost of her."
         },
         {
             "timestamp": "00:02:50",
@@ -166,39 +199,48 @@
         },
         {
             "timestamp": "00:02:53",
-            "lyric": "Whippin' in the foreign and the tears keep blowin', yeah"
+            "lyric": "Whippin' in the foreign and the tears keep blowin', yeah",
+            "prompt": "A man reaches for a bottle of alcohol in the in the passenger footwell of the car."
         },
         {
             "timestamp": "00:02:57",
-            "lyric": "Ooh, I fall apart"
+            "lyric": "Ooh, I fall apart",
+            "prompt": "A woman yelling at a man, a look of pity on the man's face."
         },
         {
             "timestamp": "00:03:01",
-            "lyric": "Down to my core"
+            "lyric": "Down to my core",
+            "prompt": "Her eyes had already turned to glass, distant and unfamiliar."
         },
         {
             "timestamp": "00:03:03",
-            "lyric": "Ooh, I fall apart"
+            "lyric": "Ooh, I fall apart",
+            "prompt": "She stood in front of him in the kitchen, sunlight pouring in through half-closed blinds."
         },
         {
             "timestamp": "00:03:08",
-            "lyric": "Down to my core"
+            "lyric": "Down to my core",
+            "prompt": "A girl outside of an apartment building on an empty street."
         },
         {
             "timestamp": "00:03:10",
-            "lyric": "Ooh, didn't know it before"
+            "lyric": "Ooh, didn't know it before",
+            "prompt": "He hadn't moved from the spot for hours, watching the light crawl across the floor like it was trying to follow her out."
         },
         {
             "timestamp": "00:03:14",
-            "lyric": "Surprised when you caught me off guard"
+            "lyric": "Surprised when you caught me off guard",
+            "prompt": "He had tried, gold around her neck, late-night drives to nowhere just to make her laugh."
         },
         {
             "timestamp": "00:03:17",
-            "lyric": "All this damn jewelry I bought"
+            "lyric": "All this damn jewelry I bought",
+            "prompt": "Jewelry that sparkled in candlelight, reservations with views of the whole damn skyline."
         },
         {
             "timestamp": "00:03:20",
-            "lyric": "You was my shorty, I thought"
+            "lyric": "You was my shorty, I thought",
+            "prompt": "Girlfriend in a short skirt with eyes had already turned to sadness."
         }
     ],
     "credits": [
