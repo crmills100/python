@@ -26,3 +26,5 @@
      #   example: pip install pyautogui
      python {path_to_python_script}
 
+## This project contains primarily python based projects
+
