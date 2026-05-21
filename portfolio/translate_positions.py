@@ -19,6 +19,7 @@ import json
 import os
 import re
 import sys
+from datetime import datetime
 from io import StringIO
 from typing import Iterator
 
@@ -34,6 +35,7 @@ OUTPUT_FIELDS = [
     "option_symbol",
     "option_strike",
     "option_put_call",
+    "position_date",
 ]
 
 Row = dict
@@ -54,6 +56,43 @@ def _clean_number(value: str) -> str:
 def _broker_from_filename(path: str) -> str:
     basename = os.path.basename(path)
     return basename.split("_")[0]
+
+
+# Ordered list of (regex, strptime_format) pairs tried against the filename stem.
+# The regex must capture the date portion as group 1.
+# Patterns are tried in order; first match wins.
+_DATE_PATTERNS: list[tuple[str, str]] = [
+    # webull:      ..._2026-05-21_...   ISO date anywhere in stem
+    (r'(\d{4}-\d{2}-\d{2})',            "%Y-%m-%d"),
+    # manual/etc:  same, also catches fidelity after transformation
+    # fidelity:    ..._May-05-2026      month-name at end (last segment of stem)
+    (r'([A-Za-z]+-\d{2}-\d{4})$',      "%b-%d-%Y"),
+    # schwab:      ...-2026-05-05-HHMMSS  date followed by 6-digit time
+    (r'(\d{4}-\d{2}-\d{2})-\d{6}',     "%Y-%m-%d"),
+    # robinhood:   ..._20260511         8-digit compact date
+    (r'(\d{8})$',                       "%Y%m%d"),
+    # tastytrade:  ..._260511           6-digit compact date (YYMMDD)
+    (r'(\d{6})$',                       "%y%m%d"),
+]
+
+
+def _date_from_file(path: str) -> str:
+    """Return the position date as YYYY-MM-DD.
+
+    Tries to parse a date from the filename stem using known patterns.
+    Falls back to the file's modification time if nothing matches.
+    """
+    stem = os.path.basename(path).rsplit(".", 1)[0]
+    for pattern, fmt in _DATE_PATTERNS:
+        m = re.search(pattern, stem)
+        if m:
+            try:
+                return datetime.strptime(m.group(1), fmt).strftime("%Y-%m-%d")
+            except ValueError:
+                continue
+    # Fall back to file modification time
+    mtime = os.path.getmtime(path)
+    return datetime.fromtimestamp(mtime).strftime("%Y-%m-%d")
 
 
 def _option_underlier(symbol: str) -> str:
@@ -108,7 +147,7 @@ def _parse_option_symbol(symbol: str) -> tuple[str, str]:
     return "", ""
 
 
-def _make_row(broker, account, symbol, description, quantity, last_price, market_value, asset_type, option_symbol="", option_strike="", option_put_call="") -> Row:
+def _make_row(broker, account, symbol, description, quantity, last_price, market_value, asset_type, option_symbol="", option_strike="", option_put_call="", position_date="") -> Row:
     return {
         "broker": broker,
         "account": account,
@@ -121,6 +160,7 @@ def _make_row(broker, account, symbol, description, quantity, last_price, market
         "option_symbol": option_symbol.strip(),
         "option_strike": option_strike.strip() if option_strike else "",
         "option_put_call": option_put_call.strip().lower() if option_put_call else "",
+        "position_date": position_date,
     }
 
 
@@ -639,7 +679,10 @@ def parse_file(path: str) -> Iterator[Row]:
             f"Unknown broker '{broker}' derived from filename '{os.path.basename(path)}'. "
             f"Supported brokers: {', '.join(PARSERS)}"
         )
-    yield from parser(path)
+    position_date = _date_from_file(path)
+    for row in parser(path):
+        row["position_date"] = position_date
+        yield row
 
 
 # ---------------------------------------------------------------------------

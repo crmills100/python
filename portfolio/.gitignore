@@ -5,5 +5,7 @@
 .venv/*
 sample-data/*
 .env
+schwab_token.json
 delete_me/*
+tests/data/*
 

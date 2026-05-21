@@ -27,13 +27,18 @@ def _all(pattern: str) -> list[str]:
     return sorted(glob.glob(pattern))
 
 
-def _latest_per_account(pattern: str, account_segment: int, date_segment: int) -> list[str]:
+def _latest_per_account(pattern: str, account_segment: int, date_segment: int,
+                        strip_leading: str = "") -> list[str]:
     """
     From files matching pattern, return only the newest file per account.
 
     Account and date are identified by their position in the underscore-split
     filename (zero-indexed, excluding the extension). Date segments must be
     lexicographically sortable (YYYY-MM-DD or YYMMDD both work).
+
+    strip_leading: if set, strip this prefix from the account segment before
+    grouping. Used for tastytrade where old files had a spurious 'x' prefix
+    on the account segment that the download script no longer writes.
 
     Example — webull_<account>_<YYYY-MM-DD>_positions.json:
         account_segment=1, date_segment=2
@@ -49,6 +54,8 @@ def _latest_per_account(pattern: str, account_segment: int, date_segment: int) -
             date    = parts[date_segment]
         except IndexError:
             continue
+        if strip_leading and account.startswith(strip_leading):
+            account = account[len(strip_leading):]
         prev = by_account.get(account)
         if prev is None or date > prev.rsplit(".", 1)[0].split("_")[date_segment]:
             by_account[account] = path
@@ -66,12 +73,18 @@ def collect_files() -> list[str]:
     files += _all("sample-data/fidelity_*.csv")
     files += _all("sample-data/manual_*.csv")
     files += _all("sample-data/robinhood_*.html")
-    files += _all("sample-data/schwab_*.csv")
     files += _all("sample-data/public_*.json")
 
+    # Schwab: single multi-account file per run; pick the latest by filename sort.
+    # Filename: schwab_All-Accounts-Positions-<YYYY-MM-DD>-<HHMMSS>.csv
+    schwab_files = sorted(glob.glob("sample-data/schwab_*.csv"))
+    if schwab_files:
+        files.append(schwab_files[-1])
+
     # Tastytrade: tastytrade_<type>_<account>_<YYMMDD>.csv  (account=2, date=3)
-    files += _latest_per_account("sample-data/tastytrade_positions_*.csv", account_segment=2, date_segment=3)
-    files += _latest_per_account("sample-data/tastytrade_balance_*.csv",   account_segment=2, date_segment=3)
+    # strip_leading="x": old manual exports had a spurious 'x' prefix on the account segment
+    files += _latest_per_account("sample-data/tastytrade_positions_*.csv", account_segment=2, date_segment=3, strip_leading="x")
+    files += _latest_per_account("sample-data/tastytrade_balance_*.csv",   account_segment=2, date_segment=3, strip_leading="x")
 
     # Webull: webull_<account>_<YYYY-MM-DD>_<type>.json  (account=1, date=2)
     files += _latest_per_account("sample-data/webull_*_positions.json", account_segment=1, date_segment=2)
