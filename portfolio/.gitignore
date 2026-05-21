@@ -4,4 +4,6 @@
 
 .venv/*
 sample-data/*
+.env
+delete_me/*
 
