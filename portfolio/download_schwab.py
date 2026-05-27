@@ -86,6 +86,7 @@ CSV_COLUMNS = [
 _ASSET_TYPE_MAP = {
     "EQUITY":                  "Equity",
     "ETF":                     "ETFs & Closed End Funds",
+    "COLLECTIVE_INVESTMENT":   "ETFs & Closed End Funds",
     "OPTION":                  "Option",
     "MUTUAL_FUND":             "Mutual Fund",
     "FIXED_INCOME":            "Fixed Income",
@@ -202,7 +203,7 @@ def main() -> None:
     )
 
     for entry in accounts:
-        account_info = entry.get("account", entry)
+        account_info = entry.get("securitiesAccount", entry)
         account_number = account_info.get("accountNumber", "unknown")
         positions = account_info.get("positions", [])
         balances  = account_info.get("currentBalances", {})

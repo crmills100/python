@@ -14,13 +14,13 @@ Output is written to stdout. Pass explicit file paths; the script does no file s
 
 ## Rebuilding positions.csv
 
-`refresh_positions.py` selects the latest snapshot per account from `sample-data/` and writes `positions.csv`:
+`refresh_positions.py` selects the latest snapshot per account from `sample-data/` and writes `positions.csv` and `positions.ods`:
 
 ```bash
 python3 refresh_positions.py
 ```
 
-For brokers with download scripts (webull, and later tastytrade/schwab), multiple dated snapshots may accumulate in `sample-data/`. `refresh_positions.py` picks only the newest file per account using lexicographic date sorting. For brokers without download scripts, all matching files are included as-is.
+For brokers with download scripts (webull, tastytrade, schwab, fidelity), multiple dated snapshots may accumulate in `sample-data/`. `refresh_positions.py` picks only the newest file per account using lexicographic date sorting. For brokers without download scripts (manual, robinhood, public), all matching files are included as-is. Schwab is a special case: it uses the lexicographically last file rather than per-account selection, because a single export file covers all accounts. Fidelity also uses the lexicographically last file for the same reason.
 
 To verify the output is correct:
 
@@ -50,7 +50,11 @@ There are no lint config and no CI.
 
 After any change to `translate_positions.py`, run `python3 refresh_positions.py` to rebuild `positions.csv` if the output legitimately changes, then run the tests to confirm everything passes.
 
-Test fixtures live in `tests/data/` — a fixed snapshot of the broker input files and the expected `positions.csv` output derived from them. These are independent of `sample-data/` and do not change when new downloads are run. The `public` fixture is named `public_account-positions_2026-05-06.json` (date embedded) so `_date_from_file` doesn't fall back to mtime.
+Test fixtures live in `tests/data/` — a fixed snapshot of the broker input files and the expected `positions.csv` output derived from them. These are independent of `sample-data/` and do not change when new downloads are run. **`tests/data/` is gitignored** — fixtures exist locally but are not committed. The `public` fixture is named `public_account-positions_2026-05-06.json` (date embedded) so `_date_from_file` doesn't fall back to mtime. The `sample-data/public` file has no date in its name, so it always falls back to mtime for `position_date`.
+
+`TestFullPipeline` temporarily `os.chdir`s to `tests/data/` and restores the original directory in a `finally` block — do not add cleanup logic that assumes the cwd is stable during that test class.
+
+`refresh_positions.py` invokes `translate_positions.py` as a **subprocess** (not imported). It must be run from the repo root; it uses relative paths for both `sample-data/` inputs and `positions.csv`/`positions.ods` outputs.
 
 ## Standard output schema
 
@@ -65,7 +69,7 @@ broker, account, symbol, description, quantity, last_price, market_value, asset_
 - `option_symbol`: for `Option` rows, holds the broker's raw option symbol; `symbol` is set to the underlier ticker. For non-option rows, `option_symbol` is empty. The underlier is extracted by `_option_underlier()`: takes the leading alpha characters for OCC/compact formats, or the first space-delimited token for Schwab's format. For webull, the symbol is already the underlier so `symbol == option_symbol`.
 - `option_strike`: strike price as a plain number string (e.g. `"150"`, `"52.5"`, `"210.00"`); empty for non-option rows. Source varies by broker: explicit column for tastytrade and webull; parsed from `option_symbol` via `_parse_option_symbol()` for fidelity, schwab, and public.
 - `option_put_call`: `"call"` or `"put"` (lowercase); empty for non-option rows. Same sourcing as `option_strike`. `_parse_option_symbol()` handles OCC compact (`AMD260618C150`), OCC long zero-padded (`LIT260515P00075000`, `SPY   260515C00690000`), and Schwab space-delimited (`AMZN 05/15/2026 210.00 C`).
-- `position_date`: `YYYY-MM-DD` date the positions were captured. Extracted from the filename by `_date_from_file()` using a sequence of regex patterns (ISO date, month-name date, compact 8-digit, compact 6-digit YYMMDD). Falls back to the file's modification time if no pattern matches. The date is injected into every row in `parse_file()`, not in the individual broker parsers.
+- `position_date`: `YYYY-MM-DD` date the positions were captured. Extracted from the filename by `_date_from_file()` using a sequence of regex patterns (ISO date, month-name date, compact 8-digit, compact 6-digit YYMMDD). Falls back to the file's modification time if no pattern matches. The date is injected into every row in `parse_file()`, not in the individual broker parsers. **Calling a broker parser directly (e.g. `parse_fidelity(path)`) returns rows with `position_date=""`.**
 
 ## Broker detection
 
@@ -89,7 +93,7 @@ The broker name is the filename prefix **before the first `_`**, lowercased. The
 ### robinhood — HTML
 - Scraped HTML from the Robinhood web portfolio page (`.html` extension).
 - Account is the third underscore-delimited filename segment (e.g. `robinhood_positions_ACCOUNT1_date.html` → `ACCOUNT1`).
-- Each position is an `<a href="/stocks/SYMBOL">` block. Within each block, `<span>` text nodes appear in fixed order: `[0]` description, `[1]` symbol, `[2]` quantity, `[3]` last_price, `[4]` avg_cost (unused), `[5]` total_return (unused), `[6]` market_value.
+- Each position is an `<a href="/stocks/SYMBOL">` block. `symbol` is captured from the `href` attribute via regex (not from a span). Within each block, `<span>` text nodes appear in fixed order: `[0]` description, `[1]` (skipped — duplicate symbol text), `[2]` quantity, `[3]` last_price, `[4]` avg_cost (unused), `[5]` total_return (unused), `[6]` market_value.
 - All positions are `Equity`; no options or cash rows in this export.
 - CSS class names are obfuscated — parse by span position, not class.
 
@@ -121,10 +125,11 @@ The broker name is the filename prefix **before the first `_`**, lowercased. The
 
 ### tastytrade — CSV
 - UTF-8, no BOM. One header row.
-- Filename: `tastytrade_positions_<account>_<date>.csv`. Account is read from the `Account` column (not the filename — the filename has a spurious `x` prefix on the account segment).
+- Filename: `tastytrade_positions_<account>_<date>.csv`. Account is read from the `Account` column (not the filename — old fixture files have a spurious `x` prefix on the account filename segment; new downloads do not).
 - Columns used: `Account`, `Symbol`, `Type`, `Quantity`, `Exp Date`, `Strike Price`, `Call/Put`, `Underlying Last Price`, `Net Liq`.
 - `Type` values: `STOCK` → `"Equity"`, `OPTION` → `"Option"`.
 - Option symbols use OCC-style with extra internal spaces (e.g. `SPY   260515C00690000`) — preserved as-is.
+- `_parse_option_symbol()` **cannot** parse this spaced OCC format (returns `("", "")`). `option_strike` and `option_put_call` are therefore sourced from the explicit `Strike Price` and `Call/Put` CSV columns, not from the symbol.
 - `last_price`: for `STOCK`, `Underlying Last Price`; for `OPTION`, the mid of `Bid (Sell)` and `Ask (Buy)`, rounded to 4 decimal places.
 - `market_value`: `Net Liq` — comma-formatted, can be negative in quotes (e.g. `"-16,750.00"`), handled by `_clean_number`.
 - Description: empty for stocks; `"CALL/PUT Exp Strike"` for options (e.g. `"Put Jun 18, 2026 940"`).
@@ -142,7 +147,20 @@ The broker name is the filename prefix **before the first `_`**, lowercased. The
 
 ## analyze_exposure.py
 
-A secondary script that reads `positions.csv` (or any path passed as the first argument) and produces a per-symbol / per-broker / per-asset-type exposure summary. Writes `exposure_summary.csv` by default. Requires `openpyxl` for the `.xlsx` variant. Not part of the core translate pipeline.
+A secondary script that reads `positions.csv` (or any path passed as the first argument) and produces a per-symbol / per-broker / per-asset-type exposure summary. Writes `exposure_summary.csv` by default. Uses only stdlib (`csv`, `collections`) — no extra dependencies. Not part of the core translate pipeline.
+
+## ODS output
+
+`refresh_positions.py` writes `positions.ods` (via `odfpy`, installed in `.venv`) immediately after `positions.csv`. The spreadsheet has three sheets:
+- **Positions** — rows from `positions.csv`, excluding accounts in `EXCLUDED_ACCOUNTS`; header row bolded.
+- **Summary** — total `market_value` by `(broker, account, position_date)`, excluding `EXCLUDED_ACCOUNTS`.
+- **Excluded** — rows for accounts listed in `EXCLUDED_ACCOUNTS` in `refresh_positions.py`.
+
+`odfpy` is required for `refresh_positions.py` to complete. Install it into `.venv` with `pip install odfpy`.
+
+To exclude an account from Positions and Summary (moving it to the Excluded sheet), add its account number string to `EXCLUDED_ACCOUNTS` at the top of `_write_ods()` in `refresh_positions.py`.
+
+Note: Schwab futures positions are not available via the Schwab Trader API. Add them manually to `manual_*.csv` with `asset_type=Futures` so they appear in the summary.
 
 ## Adding a new broker
 
@@ -183,6 +201,40 @@ The `grant_type=password` flow is **not supported** by Tastytrade. Obtain a refr
 
 The script writes positions using the same CSV columns as a manual export. Option `last_price` is sourced from `mark_price` (written into both `Bid (Sell)` and `Ask (Buy)` so the parser's mid calculation yields the mark). `Strike Price` and `Call/Put` are left empty — the parser derives them from the OCC option symbol instead.
 
+### download_fidelity.py
+
+Fidelity has no retail API. This script connects to an **already-running Chrome browser** via the Chrome DevTools Protocol (CDP) and automates the Positions page download.
+
+**Setup** (one-time):
+```bash
+.venv/bin/python3.12 -m pip install playwright
+.venv/bin/playwright install chromium
+```
+
+**Each run:**
+
+1. Launch Chrome with the remote debugging port (keep this terminal open):
+```bash
+google-chrome --remote-debugging-port=9222 \
+    --user-data-dir=/tmp/chrome-debug-profile \
+    --ozone-platform=x11 --no-first-run
+```
+
+2. Log into Fidelity in that browser if the session has expired.
+
+3. Run the script:
+```bash
+python3 download_fidelity.py
+```
+
+If the session is still valid the script navigates directly to Positions and clicks Download. If the session has expired it falls back to credential-based login using `FIDELITY_USERNAME` and `FIDELITY_PASSWORD` from `.env`, prompting for a 2FA code if required.
+
+The downloaded file is saved as `sample-data/fidelity_Portfolio_Positions_<date>.csv`, matching the broker prefix convention.
+
+Key implementation details:
+- Connects via CDP (`http://127.0.0.1:9222`) — Chrome must be launched with `--remote-debugging-port=9222` and `--user-data-dir` pointing to a non-default directory (Chrome rejects CDP on its default profile dir).
+- The Download option is inside a kebab menu opened by button `#posweb-grid_top-kebab_popover-button`. The script waits for that button to appear (confirming the positions table has rendered), clicks it, then clicks `#kebabmenuitem-download`.
+
 ### download_schwab.py
 
 Requires `schwab-py` (install into `.venv`). Uses OAuth2 authorization code flow. On first run it opens a browser for a one-time login; subsequent runs load the saved token from `schwab_token.json` (gitignored) and refresh it automatically.
@@ -209,3 +261,5 @@ The canonical expected output for all sources is `positions.csv` in the repo roo
 python3 refresh_positions.py
 diff positions.csv <(python3 refresh_positions.py 2>/dev/null)  # empty = correct
 ```
+
+`sample-data/` and `tests/data/` are both gitignored. `delete_me/` (contains old `webapi_download.py`) is also gitignored and can be ignored.

@@ -5,13 +5,15 @@ Converts broker position export files into a single standard CSV (`positions.csv
 ## Requirements
 
 - Python 3 (stdlib only for core scripts)
-- Third-party packages for download scripts: `webull-trade-sdk`, `tastytrade`, `schwab-py`
+- Third-party packages for download scripts: `webull-trade-sdk`, `tastytrade`, `schwab-py`, `playwright`
+- `odfpy` for ODS spreadsheet output
 
 Install into the virtual environment:
 
 ```bash
 python3 -m venv .venv
-.venv/bin/python3.12 -m pip install webull-trade-sdk tastytrade schwab-py pytest
+.venv/bin/python3.12 -m pip install webull-trade-sdk tastytrade schwab-py odfpy playwright pytest
+.venv/bin/playwright install chromium
 ```
 
 ## Setup
@@ -33,11 +35,16 @@ TT_REFRESH=
 SCHWAB_APP_KEY=
 SCHWAB_APP_SECRET=
 SCHWAB_CALLBACK_URL=https://127.0.0.1:8182
+
+# Fidelity
+FIDELITY_USERNAME=
+FIDELITY_PASSWORD=
 ```
 
 - **Webull:** `WEBULL_APP_KEY` and `WEBULL_APP_SECRET` come from the Webull developer portal.
 - **Tastytrade:** `TT_SECRET` is the OAuth client secret from the Tastytrade developer portal. `TT_REFRESH` is a long-lived refresh token — obtain it via the Tastytrade developer portal and set it manually.
 - **Schwab:** `SCHWAB_APP_KEY` and `SCHWAB_APP_SECRET` come from the Schwab developer portal. Register `https://127.0.0.1:8182` as the redirect URI in your Schwab app, then run `setup_schwab_auth.py` once to complete the browser login before using `download_schwab.py`.
+- **Fidelity:** `FIDELITY_USERNAME` and `FIDELITY_PASSWORD` are your Fidelity login credentials. Used as a fallback if the browser session has expired.
 
 ## Downloading positions
 
@@ -49,20 +56,30 @@ python3 download_tastytrade.py
 python3 download_schwab.py
 ```
 
+For Fidelity, launch Chrome with the remote debugging port first, then run the script:
+
+```bash
+google-chrome --remote-debugging-port=9222 \
+    --user-data-dir=/tmp/chrome-debug-profile \
+    --ozone-platform=x11 --no-first-run &
+# Log into Fidelity in that browser, then:
+python3 download_fidelity.py
+```
+
 Each script writes dated snapshot files to `sample-data/`, e.g.:
 
 ```
 sample-data/webull_<account>_2026-05-21_positions.json
 sample-data/tastytrade_positions_<account>_260521.csv
+sample-data/fidelity_Portfolio_Positions_May-25-2026.csv
 ```
 
-For brokers without a download script (Fidelity, Robinhood, Public),
+For brokers without a download script (Robinhood, Public),
 export the file manually from the broker's website and place it in `sample-data/`.
 The filename must start with the broker name followed by an underscore:
 
 | Broker | Format | Export path |
 |---|---|---|
-| Fidelity | CSV | Portfolio → Positions → Download |
 | Robinhood | HTML | Save the Positions page from the web app |
 | Public | JSON | Account → Export positions |
 
@@ -73,7 +90,7 @@ python3 refresh_positions.py
 ```
 
 This selects the latest snapshot per account from `sample-data/` and writes
-`positions.csv`. Run this after downloading or manually adding any new files.
+`positions.csv` and `positions.ods`. Run this after downloading or manually adding any new files.
 
 ## Output format
 

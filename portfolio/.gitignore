@@ -7,5 +7,12 @@ sample-data/*
 .env
 schwab_token.json
 delete_me/*
+
+__pycache__/*
+tests/__pycache__/*
+
+# Eventually get better sample data and remove this
 tests/data/*
 
+# Temporary log files from webull_trade_sdk
+webull_trade_sdk.log*
