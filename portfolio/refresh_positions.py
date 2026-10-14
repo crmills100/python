@@ -1,7 +1,7 @@
 """
 Rebuild positions.csv from the latest snapshot files in sample-data/.
 
-For brokers with download scripts (fidelity, webull, tastytrade, schwab), multiple
+For brokers with download scripts (fidelity, webull, tastytrade, schwab, public), multiple
 dated snapshots may exist in sample-data/. This script selects only the newest file
 per account before passing the full file list to translate_positions.py.
 
@@ -74,9 +74,14 @@ def collect_files() -> list[str]:
     fidelity_files = sorted(glob.glob("sample-data/fidelity_*.csv"))
     if fidelity_files:
         files.append(fidelity_files[-1])
-    files += _all("sample-data/manual_*.csv")
-    files += _all("sample-data/robinhood_*.html")
-    files += _all("sample-data/public_*.json")
+    # Manual: one file holds all assets; pick the latest by filename sort.
+    # Filename: manual_assets_<YYYY-MM-DD>.csv
+    manual_files = sorted(glob.glob("sample-data/manual_*.csv"))
+    if manual_files:
+        files.append(manual_files[-1])
+    # Robinhood: robinhood_positions_<account>_<YYYYMMDD>.html  (account=2, date=3)
+    # An empty file means the account has no positions as of that date.
+    files += _latest_per_account("sample-data/robinhood_*.html", account_segment=2, date_segment=3)
 
     # Schwab: single multi-account file per run; pick the latest by filename sort.
     # Filename: schwab_All-Accounts-Positions-<YYYY-MM-DD>-<HHMMSS>.csv
@@ -88,6 +93,9 @@ def collect_files() -> list[str]:
     # strip_leading="x": old manual exports had a spurious 'x' prefix on the account segment
     files += _latest_per_account("sample-data/tastytrade_positions_*.csv", account_segment=2, date_segment=3, strip_leading="x")
     files += _latest_per_account("sample-data/tastytrade_balance_*.csv",   account_segment=2, date_segment=3, strip_leading="x")
+
+    # Public: public_<account>_<YYYY-MM-DD>.json  (account=1, date=2)
+    files += _latest_per_account("sample-data/public_*.json", account_segment=1, date_segment=2)
 
     # Webull: webull_<account>_<YYYY-MM-DD>_<type>.json  (account=1, date=2)
     files += _latest_per_account("sample-data/webull_*_positions.json", account_segment=1, date_segment=2)

@@ -20,7 +20,7 @@ Output is written to stdout. Pass explicit file paths; the script does no file s
 python3 refresh_positions.py
 ```
 
-For brokers with download scripts (webull, tastytrade, schwab, fidelity), multiple dated snapshots may accumulate in `sample-data/`. `refresh_positions.py` picks only the newest file per account using lexicographic date sorting. For brokers without download scripts (manual, robinhood, public), all matching files are included as-is. Schwab is a special case: it uses the lexicographically last file rather than per-account selection, because a single export file covers all accounts. Fidelity also uses the lexicographically last file for the same reason.
+For brokers with per-account dated snapshots (webull, tastytrade, public, robinhood) or a single multi-account export (schwab, fidelity, manual), multiple dated snapshots may accumulate in `sample-data/`. `refresh_positions.py` picks only the newest file per account using lexicographic date sorting. Every broker now has dated filenames, so only the newest snapshot is ever used. Public is selected per account (`public_<account>_<YYYY-MM-DD>.json`, account=segment 1, date=segment 2), like webull; the account ID in the filename must match `accountId` in the JSON, otherwise snapshots of the same account would not supersede each other. Schwab is a special case: it uses the lexicographically last file rather than per-account selection, because a single export file covers all accounts. Manual likewise uses the lexicographically last `manual_assets_<YYYY-MM-DD>.csv`, so each new snapshot must be a complete file (not a delta). Robinhood is selected per account (`robinhood_positions_<account>_<YYYYMMDD>.html`, account=segment 2, date=segment 3). Fidelity also uses the lexicographically last file for the same reason; its filenames use an ISO date (`fidelity_Portfolio_Positions_YYYY-MM-DD.csv`) so lexicographic order is chronological (month-name dates like `May-25-2026` do not sort correctly).
 
 To verify the output is correct:
 
@@ -50,7 +50,7 @@ There are no lint config and no CI.
 
 After any change to `translate_positions.py`, run `python3 refresh_positions.py` to rebuild `positions.csv` if the output legitimately changes, then run the tests to confirm everything passes.
 
-Test fixtures live in `tests/data/` — a fixed snapshot of the broker input files and the expected `positions.csv` output derived from them. These are independent of `sample-data/` and do not change when new downloads are run. **`tests/data/` is gitignored** — fixtures exist locally but are not committed. The `public` fixture is named `public_account-positions_2026-05-06.json` (date embedded) so `_date_from_file` doesn't fall back to mtime. The `sample-data/public` file has no date in its name, so it always falls back to mtime for `position_date`.
+Test fixtures live in `tests/data/` — a fixed snapshot of the broker input files and the expected `positions.csv` output derived from them. These are independent of `sample-data/` and do not change when new downloads are run. **`tests/data/` is gitignored** — fixtures exist locally but are not committed. The `public` fixture is named `public_5OR13781_2026-05-06.json` (account and date embedded) so `_date_from_file` doesn't fall back to mtime and the pipeline test's per-account selection works.
 
 `TestFullPipeline` temporarily `os.chdir`s to `tests/data/` and restores the original directory in a `finally` block — do not add cleanup logic that assumes the cwd is stable during that test class.
 
@@ -92,6 +92,7 @@ The broker name is the filename prefix **before the first `_`**, lowercased. The
 
 ### robinhood — HTML
 - Scraped HTML from the Robinhood web portfolio page (`.html` extension).
+- An **empty file** (e.g. `touch robinhood_positions_ACCOUNT1_20261014.html`) means the account has no positions as of that date: it parses to zero rows and, being the newest file, supersedes older snapshots. Cash held at Robinhood is not in this export; record it in the manual file.
 - Account is the third underscore-delimited filename segment (e.g. `robinhood_positions_ACCOUNT1_date.html` → `ACCOUNT1`).
 - Each position is an `<a href="/stocks/SYMBOL">` block. `symbol` is captured from the `href` attribute via regex (not from a span). Within each block, `<span>` text nodes appear in fixed order: `[0]` description, `[1]` (skipped — duplicate symbol text), `[2]` quantity, `[3]` last_price, `[4]` avg_cost (unused), `[5]` total_return (unused), `[6]` market_value.
 - All positions are `Equity`; no options or cash rows in this export.
@@ -108,7 +109,7 @@ The broker name is the filename prefix **before the first `_`**, lowercased. The
 - Option symbols use Schwab's space-delimited format (`AMZN 05/15/2026 210.00 C`), not OCC format.
 
 ### manual — CSV
-- UTF-8, no BOM. One header row. One file for all non-broker assets.
+- UTF-8, no BOM. One header row. One file for all non-broker assets, named `manual_assets_<YYYY-MM-DD>.csv`. Only the latest dated file is used, so copy the previous file forward and edit it. Every row must have all 7 columns — a missing comma shifts values into the wrong columns and the parse fails.
 - Columns map directly to the output schema: `account`, `symbol`, `description`, `quantity`, `last_price`, `market_value`, `asset_type`.
 - `symbol` should be empty for unique assets (e.g. a specific property); use a short code for fungible assets (e.g. `GOLD`).
 - `quantity` and `last_price` are optional — set `market_value` directly and leave them empty for assets without a per-unit price.
@@ -116,6 +117,7 @@ The broker name is the filename prefix **before the first `_`**, lowercased. The
 - Multiple accounts and asset types can be mixed in one file; the `account` column separates them.
 
 ### public — JSON
+- Filename: `public_<account>_<YYYY-MM-DD>.json`, one file per account (e.g. a brokerage account and a cash/`HIGH_YIELD` account, which has an empty `positions[]` and only a cash balance). Exported manually from the website (no download script).
 - Single JSON object with `accountId` and `positions[]` array.
 - Fields used: `instrument.symbol`, `instrument.name`, `instrument.type`, `quantity`, `currentValue`, `lastPrice.lastPrice` (nested dict — guarded with `isinstance` check; absent or non-dict → `""`).
 - `instrument.type` values: `EQUITY` → `Equity`, `OPTION` → `Option`; unknown types fall back to `raw_type.capitalize()`.
@@ -229,7 +231,7 @@ python3 download_fidelity.py
 
 If the session is still valid the script navigates directly to Positions and clicks Download. If the session has expired it falls back to credential-based login using `FIDELITY_USERNAME` and `FIDELITY_PASSWORD` from `.env`, prompting for a 2FA code if required.
 
-The downloaded file is saved as `sample-data/fidelity_Portfolio_Positions_<date>.csv`, matching the broker prefix convention.
+The downloaded file is saved as `sample-data/fidelity_Portfolio_Positions_<YYYY-MM-DD>.csv`, matching the broker prefix convention. The script converts Fidelity's `Mon-DD-YYYY` filename date to ISO so files sort chronologically.
 
 Key implementation details:
 - Connects via CDP (`http://127.0.0.1:9222`) — Chrome must be launched with `--remote-debugging-port=9222` and `--user-data-dir` pointing to a non-default directory (Chrome rejects CDP on its default profile dir).

@@ -19,7 +19,7 @@ Usage
        python3 download_fidelity.py
 
 The script will navigate to the Positions page, click Download, and save the
-file to sample-data/fidelity_Portfolio_Positions_<date>.csv.
+file to sample-data/fidelity_Portfolio_Positions_<YYYY-MM-DD>.csv.
 
 If the session has expired and login is required, credentials are read from
 .env in the repo root:
@@ -35,8 +35,10 @@ Requires: playwright  (not stdlib — install into .venv)
     .venv/bin/playwright install chromium
 """
 
+import re
 import os
 import sys
+from datetime import datetime
 from pathlib import Path
 
 # ---------------------------------------------------------------------------
@@ -232,8 +234,14 @@ def main() -> None:
         download = dl_info.value
         original_name = download.suggested_filename  # e.g. Portfolio_Positions_May-07-2026.csv
 
-        # Rename to include the fidelity_ prefix so translate_positions.py detects the broker.
-        dest_path = dest_dir / f"fidelity_{original_name}"
+        # Rename to include the fidelity_ prefix so translate_positions.py detects the broker,
+        # and convert the month-name date to ISO so filenames sort chronologically.
+        m = re.search(r"([A-Za-z]+-\d{2}-\d{4})", original_name)
+        try:
+            date_str = datetime.strptime(m.group(1), "%b-%d-%Y").strftime("%Y-%m-%d")
+        except (AttributeError, ValueError):
+            date_str = datetime.now().strftime("%Y-%m-%d")
+        dest_path = dest_dir / f"fidelity_Portfolio_Positions_{date_str}.csv"
         download.save_as(dest_path)
         print(f"Saved: {dest_path}")
 

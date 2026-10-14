@@ -276,15 +276,15 @@ class TestParseSchwab:
 
 class TestParsePublic:
     def test_row_count(self):
-        rows = parse(DATA / "public_account-positions_2026-05-06.json")
+        rows = parse(DATA / "public_5OR13781_2026-05-06.json")
         assert len(rows) == len(canonical_rows("public"))
 
     def test_matches_canonical(self):
-        rows = parse(DATA / "public_account-positions_2026-05-06.json")
+        rows = parse(DATA / "public_5OR13781_2026-05-06.json")
         assert rows == canonical_rows("public")
 
     def test_has_cash_row(self):
-        rows = parse(DATA / "public_account-positions_2026-05-06.json")
+        rows = parse(DATA / "public_5OR13781_2026-05-06.json")
         assert any(r["asset_type"] == "Cash" for r in rows)
 
 
@@ -407,7 +407,7 @@ class TestFullPipeline:
                 sorted(globmod.glob("fidelity_*.csv")) +
                 sorted(globmod.glob("manual_*.csv")) +
                 sorted(globmod.glob("robinhood_*.html")) +
-                sorted(globmod.glob("public_*.json")) +
+                latest_per_account("public_*.json", 1, 2) +
                 sorted(globmod.glob("schwab_*.csv"))[-1:] +
                 latest_per_account("tastytrade_positions_*.csv", 2, 3, "x") +
                 latest_per_account("tastytrade_balance_*.csv",   2, 3, "x") +
