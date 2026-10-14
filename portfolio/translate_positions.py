@@ -209,16 +209,18 @@ def parse_fidelity(path: str) -> Iterator[Row]:
 
     reader = csv.DictReader(StringIO("".join(data_lines)))
 
-    for rec in reader:
-        symbol = rec.get("Symbol", "").strip()
+    for raw_rec in reader:
+        # Fidelity has used both "Current Value" and "Current value" header casing
+        rec = {k.strip().lower(): v for k, v in raw_rec.items() if k}
+        symbol = (rec.get("symbol") or "").strip()
         if not symbol or symbol in FIDELITY_SKIP_SYMBOLS:
             continue
 
-        account_num = rec.get("Account Number", "").strip()
-        account_name = rec.get("Account Name", "").strip()
+        account_num = (rec.get("account number") or "").strip()
+        account_name = (rec.get("account name") or "").strip()
         account = f"{account_num} {account_name}".strip() if account_num else account_name
 
-        market_value = rec.get("Current Value", "")
+        market_value = rec.get("current value") or ""
 
         # Cash summary rows: emit with empty symbol, quantity, last_price.
         if symbol in FIDELITY_CASH_SYMBOLS:
@@ -226,10 +228,10 @@ def parse_fidelity(path: str) -> Iterator[Row]:
                             "", "", market_value, "Cash")
             continue
 
-        quantity = rec.get("Quantity", "")
-        last_price = rec.get("Last Price", "")
-        description = rec.get("Description", "")
-        asset_type_raw = rec.get("Type", "").strip()
+        quantity = rec.get("quantity") or ""
+        last_price = rec.get("last price") or ""
+        description = rec.get("description") or ""
+        asset_type_raw = (rec.get("type") or "").strip()
 
         # Classify asset type
         if symbol.endswith("**"):

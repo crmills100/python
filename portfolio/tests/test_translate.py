@@ -218,6 +218,25 @@ class TestParseFidelity:
             assert r["option_symbol"] != ""
             assert r["option_put_call"] in ("call", "put")
 
+    def test_sentence_case_headers(self, tmp_path):
+        # The Fidelity web download uses "Current value" / "Last price" /
+        # "Account number"; older exports used title case. Both must parse.
+        f = tmp_path / "fidelity_Portfolio_Positions_2026-10-14.csv"
+        f.write_text(
+            "\ufeffAccount number,Account name,Symbol,Description,Quantity,Last price,"
+            "Last price change,Current value,Type\n"
+            "X1,Individual - TOD,SPAXX**,HELD IN MONEY MARKET,,,,$8926.99,Cash\n"
+            "X1,Individual - TOD,AMD,ADVANCED MICRO DEVICES INC,200,$584.06,+$1.00,"
+            "\"$116,812.38\",Margin\n",
+            encoding="utf-8",
+        )
+        rows = parse(f)
+        assert [r["account"] for r in rows] == ["X1 Individual - TOD"] * 2
+        assert rows[0]["market_value"] == "8926.99"
+        assert rows[1]["quantity"] == "200"
+        assert rows[1]["last_price"] == "584.06"
+        assert rows[1]["market_value"] == "116812.38"
+
 
 class TestParseManual:
     def test_row_count(self):

@@ -78,7 +78,7 @@ The broker name is the filename prefix **before the first `_`**, lowercased. The
 ## Supported brokers and format quirks
 
 ### fidelity — CSV
-- UTF-8 BOM (`utf-8-sig`). One header row at top.
+- UTF-8 BOM (`utf-8-sig`). One header row at top. Header casing varies between exports (`Current Value` in manual downloads, `Current value` in the web download), so the parser lowercases all header names before lookup.
 - Trailing disclaimer lines (starting with `"`) and the blank line before them must be ignored — the parser stops at the first blank or quoted line.
 - Short option symbols have a leading space and dash: ` -AMD260618C150` → strip to `AMD260618C150`.
 - Cash positions (money market, sweep): symbol ends with `**`; no quantity or price.
