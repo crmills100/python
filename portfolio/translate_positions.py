@@ -132,8 +132,9 @@ def _parse_option_symbol(symbol: str) -> tuple[str, str]:
         put_call = "call" if tokens[-1].upper() == "C" else "put"
         return tokens[2], put_call
 
-    # OCC formats (compact or long/zero-padded): leading alpha + 6-digit date + C/P + digits
-    m = re.match(r'[A-Z]+(\d{6})([CP])(\d+(?:\.\d+)?)$', s)
+    # OCC formats (compact, long/zero-padded, or space-padded root as used by Schwab/
+    # tastytrade): leading alpha, optional spaces, 6-digit date, C/P, digits
+    m = re.match(r'[A-Z]+\s*(\d{6})([CP])(\d+(?:\.\d+)?)$', s)
     if m:
         _, cp, strike_raw = m.groups()
         put_call = "call" if cp == "C" else "put"
@@ -145,6 +146,17 @@ def _parse_option_symbol(symbol: str) -> tuple[str, str]:
         return strike, put_call
 
     return "", ""
+
+
+def _option_expiry(symbol: str) -> str:
+    """Return the expiry of an OCC-style option symbol as 'Mon DD, YYYY', or ''."""
+    m = re.match(r'[A-Z]+\s*(\d{6})[CP]', symbol.strip())
+    if not m:
+        return ""
+    try:
+        return datetime.strptime(m.group(1), "%y%m%d").strftime("%b %d, %Y")
+    except ValueError:
+        return ""
 
 
 def _make_row(broker, account, symbol, description, quantity, last_price, market_value, asset_type, option_symbol="", option_strike="", option_put_call="", position_date="") -> Row:
@@ -508,6 +520,16 @@ def parse_tastytrade(path: str) -> Iterator[Row]:
                 description = f"{call_put} {exp_date} {strike}" if (call_put and exp_date and strike) else ""
                 option_put_call = call_put.lower() if call_put else ""
                 option_strike = strike
+                # download_tastytrade.py leaves Strike Price / Call/Put empty;
+                # fall back to the OCC symbol
+                if not (option_strike and option_put_call):
+                    sym_strike, sym_pc = _parse_option_symbol(symbol)
+                    option_strike = option_strike or sym_strike
+                    option_put_call = option_put_call or sym_pc
+                if not description and option_strike and option_put_call:
+                    sym_exp = exp_date or _option_expiry(symbol)
+                    if sym_exp:
+                        description = f"{option_put_call.capitalize()} {sym_exp} {option_strike}"
             else:
                 description = ""
                 option_put_call = ""

@@ -91,6 +91,19 @@ def _dec(value: Decimal | None) -> str:
     return str(value)
 
 
+def _signed(value: Decimal | None, direction: str) -> str:
+    """Like _dec, but negate the value for short positions.
+
+    The API returns quantity and mark as unsigned magnitudes and reports the
+    side separately in quantity_direction ("Long" / "Short" / "Zero").
+    """
+    if value is None:
+        return ""
+    if (direction or "").strip().lower() == "short":
+        value = -abs(value)
+    return str(value)
+
+
 # ---------------------------------------------------------------------------
 # Per-account download
 # ---------------------------------------------------------------------------
@@ -128,7 +141,7 @@ async def download_account(session: Session, account: Account, date: str) -> Non
                 "Account":               account_number,
                 "Symbol":                pos.symbol,
                 "Type":                  pos_type,
-                "Quantity":              _dec(pos.quantity),
+                "Quantity":              _signed(pos.quantity, pos.quantity_direction),
                 "Exp Date":              _fmt_exp_date(pos.expires_at),
                 "DTE":                   "",
                 "Strike Price":          "",   # not available on CurrentPosition
@@ -142,7 +155,7 @@ async def download_account(session: Session, account: Account, date: str) -> Non
                 "Trade Price":           "",
                 "D's Opn":               "",
                 "Days To Expiration":    "",
-                "Net Liq":               _dec(pos.mark),
+                "Net Liq":               _signed(pos.mark, pos.quantity_direction),
             })
     print(f"  wrote {pos_path}")
 

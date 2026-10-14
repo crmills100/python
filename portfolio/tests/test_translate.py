@@ -125,12 +125,14 @@ class TestParseOptionSymbol:
         assert pc == "call"
         assert float(strike) == 690.0
 
-    def test_tastytrade_spaced_occ(self):
-        # _parse_option_symbol does not normalise internal spaces —
-        # tastytrade OCC symbols with extra spaces return ("", "") because
-        # the spaces prevent the regex from matching. strike/put_call are
-        # instead sourced from the explicit CSV columns in parse_tastytrade.
-        assert tp._parse_option_symbol("SPY   260515C00690000") == ("", "")
+    def test_option_expiry(self):
+        assert tp._option_expiry("SPY   261120P00760000") == "Nov 20, 2026"
+        assert tp._option_expiry("AMZN 05/15/2026 210.00 C") == ""
+
+    def test_spaced_occ(self):
+        # Tastytrade and Schwab-API OCC symbols pad the root with spaces
+        assert tp._parse_option_symbol("SPY   260515C00690000") == ("690", "call")
+        assert tp._parse_option_symbol("GS    261218P01100000") == ("1100", "put")
 
     def test_schwab_space_delimited_call(self):
         assert tp._parse_option_symbol("AMZN 05/15/2026 210.00 C") == ("210.00", "call")

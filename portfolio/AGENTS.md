@@ -106,7 +106,7 @@ The broker name is the filename prefix **before the first `_`**, lowercased. The
 - `Cash & Cash Investments`, `Futures Cash`, and `Futures Positions Market Value` are **not** skipped — they are emitted as summary rows with empty symbol (the symbol string becomes the description), empty quantity/last_price, and overridden `asset_type`: `"Cash"` for cash, `"Futures"` for both futures rows. This mapping lives in `SCHWAB_SUMMARY_ASSET_TYPES`.
 - Quantities use comma formatting (`"1,300"`) — stripped by `_clean_number`.
 - `Asset Type` column values used as-is except `"ETFs & Closed End Funds"` → `"Equity"`.
-- Option symbols use Schwab's space-delimited format (`AMZN 05/15/2026 210.00 C`), not OCC format.
+- Option symbols are either Schwab's space-delimited format (`AMZN 05/15/2026 210.00 C`, manual exports) or space-padded OCC (`GS    261218P01100000`, API downloads via `download_schwab.py`). Both are handled by `_parse_option_symbol()`.
 
 ### manual — CSV
 - UTF-8, no BOM. One header row. One file for all non-broker assets, named `manual_assets_<YYYY-MM-DD>.csv`. Only the latest dated file is used, so copy the previous file forward and edit it. Every row must have all 7 columns — a missing comma shifts values into the wrong columns and the parse fails.
@@ -131,10 +131,10 @@ The broker name is the filename prefix **before the first `_`**, lowercased. The
 - Columns used: `Account`, `Symbol`, `Type`, `Quantity`, `Exp Date`, `Strike Price`, `Call/Put`, `Underlying Last Price`, `Net Liq`.
 - `Type` values: `STOCK` → `"Equity"`, `OPTION` → `"Option"`.
 - Option symbols use OCC-style with extra internal spaces (e.g. `SPY   260515C00690000`) — preserved as-is.
-- `_parse_option_symbol()` **cannot** parse this spaced OCC format (returns `("", "")`). `option_strike` and `option_put_call` are therefore sourced from the explicit `Strike Price` and `Call/Put` CSV columns, not from the symbol.
+- `_parse_option_symbol()` parses this spaced OCC format. `option_strike` and `option_put_call` come from the explicit `Strike Price` and `Call/Put` CSV columns when present; when they are empty (as in `download_tastytrade.py` output) `parse_tastytrade` falls back to parsing the symbol.
 - `last_price`: for `STOCK`, `Underlying Last Price`; for `OPTION`, the mid of `Bid (Sell)` and `Ask (Buy)`, rounded to 4 decimal places.
 - `market_value`: `Net Liq` — comma-formatted, can be negative in quotes (e.g. `"-16,750.00"`), handled by `_clean_number`.
-- Description: empty for stocks; `"CALL/PUT Exp Strike"` for options (e.g. `"Put Jun 18, 2026 940"`).
+- Description: empty for stocks; `"CALL/PUT Exp Strike"` for options (e.g. `"Put Jun 18, 2026 940"`) When the `Exp Date`/`Strike Price`/`Call/Put` columns are empty (as in `download_tastytrade.py` output), the description is derived from the OCC symbol via `_option_expiry()` and `_parse_option_symbol()` in the same format (e.g. `"Put Nov 20, 2026 760"`).
 - Balance file: `tastytrade_balance_<account>_<date>.csv`. Columns: `Account`, `Symbol`, `Net Liq`. Standard 3-column CSV; `Net Liq` is a plain number read via `csv.DictReader`.
 
 ### webull — JSON
@@ -201,7 +201,7 @@ TT_REFRESH=...   # long-lived refresh token
 
 The `grant_type=password` flow is **not supported** by Tastytrade. Obtain a refresh token via the Tastytrade developer portal and set it in `.env` manually.
 
-The script writes positions using the same CSV columns as a manual export. Option `last_price` is sourced from `mark_price` (written into both `Bid (Sell)` and `Ask (Buy)` so the parser's mid calculation yields the mark). `Strike Price` and `Call/Put` are left empty — the parser derives them from the OCC option symbol instead.
+The script writes positions using the same CSV columns as a manual export. The API returns `quantity` and `mark` unsigned and gives the side in `quantity_direction`, so the script negates `Quantity` and `Net Liq` for `Short` positions (snapshots downloaded before this fix, e.g. the May ones, have all positions positive even when short). Option `last_price` is sourced from `mark_price` (written into both `Bid (Sell)` and `Ask (Buy)` so the parser's mid calculation yields the mark). `Strike Price` and `Call/Put` are left empty — the parser derives them from the OCC option symbol instead.
 
 ### download_fidelity.py
 
